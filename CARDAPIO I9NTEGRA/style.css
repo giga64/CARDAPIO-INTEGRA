@@ -11,7 +11,7 @@ body {
 
 /* --- CABEÇALHO ATUALIZADO PARA COMBINAR COM A LOGO --- */
 .header {
-    background-color: #D35400; /* Tom de laranja/vermelho para combinar com a logo */
+    background-color: #fb2404; /* Nova cor exata da logo */
     color: white;
     padding: 1.5rem 1rem;
     text-align: center;
@@ -54,7 +54,7 @@ body {
 
 .menu-section h2 {
     font-family: 'Playfair Display', serif;
-    color: #D35400; /* Mantém a cor laranja nos títulos de seção */
+    color: #fb2404; /* Cor dos títulos de seção atualizada */
     border-bottom: 2px solid #eee;
     padding-bottom: 1rem;
     font-size: 2rem;
@@ -126,7 +126,7 @@ body {
     border-radius: 8px;
     margin: -0.5rem 0 1.5rem 0;
     font-size: 0.95rem;
-    border-left: 5px solid #D35400;
+    border-left: 5px solid #fb2404; /* Cor da borda de avisos atualizada */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
