@@ -9,18 +9,22 @@ body {
     line-height: 1.6;
 }
 
+/* --- CABEÇALHO ATUALIZADO PARA COMBINAR COM A LOGO --- */
 .header {
-    background-color: #1a1a1a;
+    background-color: #D35400; /* Tom de laranja/vermelho para combinar com a logo */
     color: white;
     padding: 1.5rem 1rem;
     text-align: center;
-    border-bottom: 5px solid #d35400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
-    width: 100px;  /* Define a largura do logo */
-    height: auto;   /* Mantém a proporção da imagem */
-    margin-bottom: 10px; /* Adiciona um espaço abaixo do logo */
+    width: 120px; /* Ajuste o tamanho do logo se necessário */
+    height: auto;
+    margin-bottom: 1rem; /* Espaço entre o logo e o título */
 }
 
 .header h1 {
@@ -28,7 +32,10 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     letter-spacing: 1px;
+    color: white; /* Garante que o texto seja branco */
 }
+/* --- FIM DA SEÇÃO DO CABEÇALHO --- */
+
 
 .container {
     padding: 1rem;
@@ -47,7 +54,7 @@ body {
 
 .menu-section h2 {
     font-family: 'Playfair Display', serif;
-    color: #d35400;
+    color: #D35400; /* Mantém a cor laranja nos títulos de seção */
     border-bottom: 2px solid #eee;
     padding-bottom: 1rem;
     font-size: 2rem;
@@ -119,7 +126,7 @@ body {
     border-radius: 8px;
     margin: -0.5rem 0 1.5rem 0;
     font-size: 0.95rem;
-    border-left: 5px solid #d35400;
+    border-left: 5px solid #D35400;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
@@ -165,6 +172,11 @@ body {
     .header h1 {
         font-size: 1.8rem;
     }
+    
+    .logo {
+        width: 100px; /* Logo um pouco menor no celular */
+    }
+
     .menu-section {
         padding: 1rem;
     }
