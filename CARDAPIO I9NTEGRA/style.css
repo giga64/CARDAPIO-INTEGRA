@@ -9,9 +9,9 @@ body {
     line-height: 1.6;
 }
 
-/* --- CABEÇALHO ATUALIZADO PARA COMBINAR COM A LOGO --- */
+/* --- CABEÇALHO ATUALIZADO --- */
 .header {
-    background-color: #fb2404; /* Nova cor exata da logo */
+    background-color: #fb2404; /* Cor exata da logo */
     color: white;
     padding: 1.5rem 1rem;
     text-align: center;
@@ -22,17 +22,17 @@ body {
 }
 
 .logo {
-    width: 120px; /* Ajuste o tamanho do logo se necessário */
+    width: 160px; /* TAMANHO DA LOGO AUMENTADO */
     height: auto;
-    margin-bottom: 1rem; /* Espaço entre o logo e o título */
 }
 
+/* O h1 foi removido do HTML, então não é mais necessário aqui, mas deixamos caso queira voltar um dia */
 .header h1 {
     margin: 0;
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     letter-spacing: 1px;
-    color: white; /* Garante que o texto seja branco */
+    color: white;
 }
 /* --- FIM DA SEÇÃO DO CABEÇALHO --- */
 
@@ -54,7 +54,7 @@ body {
 
 .menu-section h2 {
     font-family: 'Playfair Display', serif;
-    color: #fb2404; /* Cor dos títulos de seção atualizada */
+    color: #fb2404;
     border-bottom: 2px solid #eee;
     padding-bottom: 1rem;
     font-size: 2rem;
@@ -126,7 +126,7 @@ body {
     border-radius: 8px;
     margin: -0.5rem 0 1.5rem 0;
     font-size: 0.95rem;
-    border-left: 5px solid #fb2404; /* Cor da borda de avisos atualizada */
+    border-left: 5px solid #fb2404;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
@@ -172,9 +172,9 @@ body {
     .header h1 {
         font-size: 1.8rem;
     }
-    
+
     .logo {
-        width: 100px; /* Logo um pouco menor no celular */
+        width: 130px; /* TAMANHO DA LOGO AUMENTADO NO CELULAR */
     }
 
     .menu-section {
