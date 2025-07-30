@@ -17,6 +17,12 @@ body {
     border-bottom: 5px solid #d35400;
 }
 
+.logo {
+    width: 100px;  /* Define a largura do logo */
+    height: auto;   /* Mantém a proporção da imagem */
+    margin-bottom: 10px; /* Adiciona um espaço abaixo do logo */
+}
+
 .header h1 {
     margin: 0;
     font-family: 'Playfair Display', serif;
