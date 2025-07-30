@@ -1,0 +1,188 @@
+/* Importa fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 5px solid #d35400;
+}
+
+.header h1 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.container {
+    padding: 1rem;
+    max-width: 900px;
+    margin: auto;
+}
+
+.menu-section {
+    background-color: white;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #d35400;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.subsection-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 1rem;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.item-description {
+    color: #555;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.price {
+    font-weight: 700;
+    color: #333;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    text-align: right;
+    min-width: 80px;
+}
+
+.price-multiple {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 1rem;
+}
+
+.notes {
+    background-color: #fffaf0;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin: -0.5rem 0 1.5rem 0;
+    font-size: 0.95rem;
+    border-left: 5px solid #d35400;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background-color: #1a1a1a;
+    color: #ccc;
+}
+
+.footer p { margin: 0.5rem 0; }
+.footer strong { color: white; }
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    width: 60px;
+    height: 60px;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-button img {
+    width: 32px;
+    height: 32px;
+}
+
+/* --- REGRAS PARA CELULAR (Design Responsivo) --- */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    .menu-section {
+        padding: 1rem;
+    }
+    .menu-section h2 {
+        font-size: 1.6rem;
+    }
+    .item-name, .price {
+        font-size: 1rem;
+    }
+    .item-description {
+        font-size: 0.85rem;
+    }
+    .price-multiple {
+        font-size: 0.9rem;
+    }
+    .container {
+        padding: 0.5rem;
+    }
+    .whatsapp-button {
+        width: 55px;
+        height: 55px;
+    }
+    .whatsapp-button img {
+        width: 28px;
+        height: 28px;
+    }
+}
