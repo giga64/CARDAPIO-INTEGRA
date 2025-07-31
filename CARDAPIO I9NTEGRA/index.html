@@ -647,6 +647,65 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
+    <!-- Modal do Item -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <div class="item-image-container">
+                    <img id="modalItemImage" src="placeholder-image.jpg" alt="Foto do item" class="item-image">
+                    <div class="image-placeholder">
+                        <span>📸</span>
+                        <p>Foto será adicionada em breve</p>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 id="modalItemName"></h3>
+                    <p id="modalItemDescription" class="item-description"></p>
+                    <div class="price-section">
+                        <span id="modalItemPrice" class="price"></span>
+                    </div>
+                    <div class="quantity-section">
+                        <label for="itemQuantity">Quantidade:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                            <input type="number" id="itemQuantity" value="1" min="1" max="99">
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart()">
+                        🛒 Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho de Compras -->
+    <div id="cart" class="cart">
+        <div class="cart-header">
+            <h3>🛒 Carrinho</h3>
+            <span id="cartCount" class="cart-count">0</span>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items do carrinho serão adicionados aqui -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+            </div>
+            <button class="send-to-whatsapp-btn" onclick="sendToWhatsApp()">
+                📱 Enviar Pedido
+            </button>
+        </div>
+    </div>
+
+    <!-- Botão do Carrinho -->
+    <button id="cartButton" class="cart-button" onclick="toggleCart()">
+        🛒 <span id="cartButtonCount">0</span>
+    </button>
+
     <script src="script.js"></script>
 </body>
 </html>
