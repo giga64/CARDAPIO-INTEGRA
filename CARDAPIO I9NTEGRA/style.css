@@ -80,7 +80,7 @@ body {
   justify-content: center;
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 9995;
   box-shadow: var(--shadow-card);
 }
 
@@ -285,7 +285,7 @@ body {
   border-radius: 50%;
   text-decoration: none;
   box-shadow: var(--shadow-modal);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -412,8 +412,8 @@ body.loaded {
   .whatsapp-button {
     width: 60px;
     height: 60px;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 20px;
+    right: 20px;
   }
 
   .whatsapp-button img {
@@ -448,6 +448,32 @@ body.loaded {
 
   .container {
     padding: 0.5rem;
+  }
+
+  .whatsapp-button {
+    width: 55px;
+    height: 55px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .whatsapp-button img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cart-button {
+    width: 55px;
+    height: 55px;
+    bottom: 15px;
+    left: 15px;
+    font-size: 1.3rem;
+  }
+
+  #cartButtonCount {
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
   }
 }
 
@@ -492,7 +518,7 @@ body.loaded {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 9996;
     left: 0;
     top: 0;
     width: 100%;
@@ -503,12 +529,12 @@ body.loaded {
 
 .modal-content {
     background-color: var(--card);
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 0;
     border-radius: var(--radius);
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
+    width: 95%;
+    max-width: 500px;
+    max-height: 95vh;
     overflow-y: auto;
     box-shadow: var(--shadow-modal);
     animation: modalSlideIn 0.3s ease-out;
@@ -542,8 +568,8 @@ body.loaded {
 .modal-body {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 0 1.5rem 1.5rem;
+    gap: 1.2rem;
+    padding: 0 1.2rem 1.2rem;
     align-items: center;
     text-align: center;
 }
@@ -551,7 +577,7 @@ body.loaded {
 .item-image-container {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 250px;
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--gradient-subtle);
@@ -585,20 +611,21 @@ body.loaded {
 
 .item-info h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--foreground);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
 }
 
 .price-section {
-    margin: 1rem 0;
+    margin: 0.8rem 0;
 }
 
 .quantity-section {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 0.8rem;
+    margin: 0.8rem 0;
     justify-content: center;
 }
 
@@ -645,21 +672,21 @@ body.loaded {
     background: var(--gradient-primary);
     color: var(--primary-foreground);
     border: none;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem;
     border-radius: var(--radius);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-smooth);
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
 }
 
 .observations-section {
     width: 100%;
-    max-width: 400px;
-    margin: 1rem 0;
+    max-width: 350px;
+    margin: 0.8rem 0;
 }
 
 .observations-section label {
@@ -672,11 +699,11 @@ body.loaded {
 
 .observations-textarea {
     width: 100%;
-    min-height: 80px;
-    padding: 0.75rem;
+    min-height: 70px;
+    padding: 0.6rem;
     border: 2px solid var(--border);
     border-radius: var(--radius);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: 'Roboto', sans-serif;
     resize: vertical;
     transition: var(--transition-smooth);
@@ -702,7 +729,7 @@ body.loaded {
     height: 100vh;
     background: var(--card);
     box-shadow: var(--shadow-modal);
-    z-index: 999;
+    z-index: 9997;
     transition: right 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -861,7 +888,7 @@ body.loaded {
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.5rem;
-    z-index: 998;
+    z-index: 9998;
     box-shadow: var(--shadow-card);
     transition: var(--transition-smooth);
     display: flex;
@@ -893,12 +920,14 @@ body.loaded {
 /* --- RESPONSIVIDADE PARA MODAL E CARRINHO --- */
 @media (max-width: 768px) {
     .modal-content {
-        width: 95%;
-        margin: 10% auto;
+        width: 98%;
+        margin: 1% auto;
+        max-width: 450px;
     }
     
     .modal-body {
         padding: 0 1rem 1rem;
+        gap: 1rem;
     }
     
     .cart {
@@ -907,7 +936,7 @@ body.loaded {
     }
     
     .cart-button {
-        bottom: 80px;
+        bottom: 20px;
         left: 20px;
     }
     
