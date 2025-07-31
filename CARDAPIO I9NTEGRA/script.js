@@ -223,6 +223,7 @@ function openItemModal(itemElement) {
     document.getElementById('modalItemDescription').textContent = itemDescription;
     document.getElementById('modalItemPrice').textContent = itemPrice;
     document.getElementById('itemQuantity').value = 1;
+    document.getElementById('itemObservations').value = '';
     
     // Mostrar modal
     modal.style.display = 'block';
@@ -250,16 +251,22 @@ function addToCart() {
     if (!currentItem) return;
     
     const quantity = parseInt(document.getElementById('itemQuantity').value);
+    const observations = document.getElementById('itemObservations').value.trim();
     const existingItemIndex = cart.findIndex(item => item.name === currentItem.name);
     
     if (existingItemIndex !== -1) {
         // Item já existe no carrinho, aumentar quantidade
         cart[existingItemIndex].quantity += quantity;
+        // Se há observações, adicionar ao item existente
+        if (observations) {
+            cart[existingItemIndex].observations = observations;
+        }
     } else {
         // Adicionar novo item
         cart.push({
             ...currentItem,
-            quantity: quantity
+            quantity: quantity,
+            observations: observations
         });
     }
     
@@ -300,10 +307,14 @@ function updateCartDisplay() {
     cart.forEach((item, index) => {
         const itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
+        
+        const observationsHtml = item.observations ? `<div class="cart-item-observations">Obs: ${item.observations}</div>` : '';
+        
         itemElement.innerHTML = `
             <div class="cart-item-info">
                 <div class="cart-item-name">${item.name}</div>
                 <div class="cart-item-price">${item.price}</div>
+                ${observationsHtml}
             </div>
             <div class="cart-item-quantity">
                 <button onclick="updateCartQuantity(${index}, -1)">-</button>
@@ -348,7 +359,11 @@ function sendToWhatsApp() {
     
     cart.forEach((item, index) => {
         message += `${index + 1}. *${item.name}*\n`;
-        message += `   ${item.price} x ${item.quantity} un.\n\n`;
+        message += `   ${item.price} x ${item.quantity} un.\n`;
+        if (item.observations) {
+            message += `   _Obs: ${item.observations}_\n`;
+        }
+        message += '\n';
     });
     
     const totalValue = cart.reduce((sum, item) => sum + (item.priceValue * item.quantity), 0);
