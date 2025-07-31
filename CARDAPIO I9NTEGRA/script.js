@@ -113,45 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adicionar classe de loading ao body
     document.body.classList.add('loaded');
 
-    // Adicionar efeito de confete no carregamento (opcional)
-    const addConfetti = () => {
-        const colors = ['#fb2404', '#25D366', '#1a1a1a', '#f4f4f9'];
-        for (let i = 0; i < 50; i++) {
-            const confetti = document.createElement('div');
-            confetti.style.cssText = `
-                position: fixed;
-                top: -10px;
-                left: ${Math.random() * 100}vw;
-                width: 10px;
-                height: 10px;
-                background: ${colors[Math.floor(Math.random() * colors.length)]};
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-                animation: confetti-fall 3s linear forwards;
-            `;
-            document.body.appendChild(confetti);
-            
-            setTimeout(() => {
-                confetti.remove();
-            }, 3000);
-        }
-    };
-
-    // Adicionar CSS para animação de confete
-    const confettiStyle = document.createElement('style');
-    confettiStyle.textContent = `
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(confettiStyle);
-
-    // Executar confete apenas uma vez no carregamento
-    setTimeout(addConfetti, 500);
+    // Efeito de confete removido para melhor experiência do usuário
 
     // Adicionar efeito de scroll suave para o topo
     const scrollToTop = () => {
