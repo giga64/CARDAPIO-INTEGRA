@@ -1,6 +1,24 @@
-# Cardápio Integra - Componentes React
+# 🍴 Integra Bar & Restaurante - Cardápio Digital
 
-Este projeto implementa um sistema de modal usando React com componentes similares ao shadcn/ui, adaptados para JavaScript puro.
+Um cardápio digital moderno e responsivo desenvolvido com React, TypeScript e Tailwind CSS. Permite aos clientes visualizar o menu, adicionar itens ao carrinho e finalizar pedidos via WhatsApp.
+
+## ✨ Funcionalidades
+
+- 📱 **Design Responsivo** - Funciona perfeitamente em desktop, tablet e mobile
+- 🛒 **Carrinho de Compras** - Adicione itens, ajuste quantidades e gerencie observações
+- 📸 **Galeria de Imagens** - Visualize fotos dos pratos (com placeholders)
+- 💬 **Integração WhatsApp** - Finalize pedidos diretamente no WhatsApp
+- 🎨 **Interface Moderna** - Design elegante com animações suaves
+- ⚡ **Performance Otimizada** - Carregamento rápido e experiência fluida
+
+## 🚀 Tecnologias Utilizadas
+
+- **React 18** - Biblioteca principal para UI
+- **TypeScript** - Tipagem estática para maior segurança
+- **Tailwind CSS** - Framework CSS utilitário
+- **Vite** - Build tool rápida e moderna
+- **Sonner** - Biblioteca de notificações toast
+- **Radix UI** - Componentes acessíveis (inspirado)
 
 ## 📁 Estrutura do Projeto
 
@@ -8,242 +26,203 @@ Este projeto implementa um sistema de modal usando React com componentes similar
 CARDAPIO-INTEGRA/
 ├── components/
 │   ├── ui/
-│   │   ├── dialog.jsx          # Componente Dialog principal
-│   │   └── alert-dialog.jsx    # Componente AlertDialog
-│   └── ProductModal.jsx        # Exemplo de uso do modal
+│   │   └── dialog.tsx          # Componente Dialog reutilizável
+│   ├── Header.tsx              # Cabeçalho da aplicação
+│   ├── Footer.tsx              # Rodapé da aplicação
+│   ├── MenuCard.tsx            # Card de seção do menu
+│   ├── ProductModal.tsx        # Modal de detalhes do produto
+│   └── Cart.tsx                # Componente do carrinho
 ├── lib/
-│   └── utils.js                # Funções utilitárias
+│   └── utils.ts                # Funções utilitárias
+├── assets/
+│   └── index.ts                # Exportação de imagens
 ├── styles/
 │   └── globals.css             # Estilos globais e variáveis CSS
-├── tailwind.config.js          # Configuração do Tailwind CSS
+├── App.tsx                     # Componente principal
+├── main.tsx                    # Ponto de entrada
+├── index.html                  # HTML base
+├── package.json                # Dependências e scripts
+├── tsconfig.json               # Configuração TypeScript
+├── vite.config.ts              # Configuração Vite
+├── tailwind.config.js          # Configuração Tailwind CSS
 └── README.md                   # Este arquivo
 ```
 
-## 🚀 Como Usar
+## 🛠️ Instalação e Configuração
 
-### 1. Instalação das Dependências
-
+### 1. Clone o repositório
 ```bash
-npm install react react-dom
-npm install -D tailwindcss postcss autoprefixer
+git clone <url-do-repositorio>
+cd CARDAPIO-INTEGRA/CARDAPIO\ I9NTEGRA
 ```
 
-### 2. Configuração do Tailwind CSS
-
-Certifique-se de que o `tailwind.config.js` está configurado corretamente e importe o arquivo CSS global:
-
-```javascript
-// No seu arquivo principal (ex: main.jsx ou App.jsx)
-import './styles/globals.css';
+### 2. Instale as dependências
+```bash
+npm install
 ```
 
-### 3. Uso do Componente Dialog
+### 3. Execute o projeto
+```bash
+npm run dev
+```
 
-```jsx
-import React, { useState } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter
-} from './components/ui/dialog';
+O projeto estará disponível em `http://localhost:5173`
 
-function App() {
-  const [open, setOpen] = useState(false);
+### 4. Build para produção
+```bash
+npm run build
+```
 
-  return (
-    <div>
-      <button onClick={() => setOpen(true)}>
-        Abrir Modal
-      </button>
+## 🎯 Como Usar
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Título do Modal</DialogTitle>
-            <DialogDescription>
-              Descrição do modal aqui...
-            </DialogDescription>
-          </DialogHeader>
+### Estrutura de Dados do Menu
 
-          <div className="py-4">
-            Conteúdo do modal...
-          </div>
-
-          <DialogFooter>
-            <button onClick={() => setOpen(false)}>
-              Fechar
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
-  );
+```typescript
+interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image?: string; // URL da imagem (opcional)
 }
+
+// Exemplo de dados
+const menuData = {
+  pratos: [
+    {
+      id: "1",
+      name: "Picanha na Brasa",
+      description: "Suculenta picanha grelhada na brasa...",
+      price: 89.90,
+      image: "url-da-imagem.jpg"
+    }
+  ],
+  bebidas: [...],
+  sobremesas: [...]
+};
 ```
 
-### 4. Uso do ProductModal (Exemplo Completo)
+### Personalização
 
-```jsx
-import React, { useState } from 'react';
-import ProductModal from './components/ProductModal';
+#### 1. Alterar Informações do Restaurante
+Edite os componentes `Header.tsx` e `Footer.tsx` para atualizar:
+- Nome do restaurante
+- Telefone
+- Endereço
+- Horário de funcionamento
 
-function App() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-    setModalOpen(true);
-  };
-
-  const handleAddToCart = (item) => {
-    console.log('Item adicionado ao carrinho:', item);
-    // Implementar lógica do carrinho aqui
-  };
-
-  return (
-    <div>
-      {/* Lista de produtos */}
-      <div onClick={() => handleProductClick({
-        name: "Picanha na Brasa",
-        description: "Suculenta picanha grelhada na brasa",
-        price: 89.90,
-        image: null
-      })}>
-        Picanha na Brasa - R$ 89,90
-      </div>
-
-      {/* Modal do produto */}
-      <ProductModal
-        product={selectedProduct}
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        onAddToCart={handleAddToCart}
-      />
-    </div>
-  );
-}
+#### 2. Configurar WhatsApp
+No arquivo `App.tsx`, altere a variável `whatsappNumber`:
+```typescript
+const whatsappNumber = "5511999999999"; // Seu número do WhatsApp
 ```
 
-## 🎨 Personalização
+#### 3. Adicionar Imagens
+1. Adicione as imagens na pasta `assets/`
+2. Importe-as no arquivo `assets/index.ts`:
+```typescript
+export { default as dishMeat } from './dish-meat.jpg';
+export { default as dishPasta } from './dish-pasta.jpg';
+```
 
-### Cores
-
-As cores podem ser personalizadas editando as variáveis CSS no arquivo `styles/globals.css`:
-
+#### 4. Personalizar Cores
+Edite as variáveis CSS no arquivo `styles/globals.css`:
 ```css
 :root {
-  --primary: 221.2 83.2% 53.3%;        /* Azul */
-  --primary-foreground: 210 40% 98%;   /* Branco */
-  --destructive: 0 84.2% 60.2%;        /* Vermelho */
+  --primary: 221.2 83.2% 53.3%;        /* Cor principal */
+  --destructive: 0 84.2% 60.2%;        /* Cor de destaque */
   /* ... outras cores */
-}
-```
-
-### Animações
-
-As animações podem ser personalizadas no `tailwind.config.js`:
-
-```javascript
-keyframes: {
-  "fade-in": {
-    "0%": { opacity: "0" },
-    "100%": { opacity: "1" },
-  },
-  // ... outras animações
 }
 ```
 
 ## 📱 Responsividade
 
-Os componentes são totalmente responsivos e se adaptam automaticamente a diferentes tamanhos de tela:
+O projeto é totalmente responsivo e se adapta a diferentes tamanhos de tela:
 
-- **Desktop**: Modal centralizado com largura máxima
-- **Tablet**: Modal adaptado para telas médias
-- **Mobile**: Modal em tela cheia com controles otimizados
+- **Desktop (> 1024px)**: Layout em grid com 3 colunas
+- **Tablet (768px - 1024px)**: Layout em grid com 2 colunas
+- **Mobile (< 768px)**: Layout em coluna única, modal em tela cheia
 
-## 🔧 Funcionalidades
+## 🔧 Funcionalidades Detalhadas
 
-### Dialog
-- ✅ Abertura/fechamento suave
-- ✅ Animações de entrada/saída
-- ✅ Backdrop com blur
-- ✅ Fechamento com ESC ou clique no backdrop
-- ✅ Foco automático no primeiro elemento interativo
+### Carrinho de Compras
+- ✅ Adicionar/remover itens
+- ✅ Ajustar quantidades
+- ✅ Adicionar observações por item
+- ✅ Cálculo automático de totais
+- ✅ Persistência durante a sessão
 
-### ProductModal
-- ✅ Controles de quantidade (+/-)
-- ✅ Campo de observações com contador
-- ✅ Validação de entrada
-- ✅ Formatação de preços
-- ✅ Placeholder para imagens
-- ✅ Design responsivo
+### Modal de Produto
+- ✅ Visualização detalhada do item
+- ✅ Controles de quantidade
+- ✅ Campo de observações
+- ✅ Imagem do produto (com placeholder)
+- ✅ Animações suaves
 
-## 🎯 Exemplo de Integração
+### Integração WhatsApp
+- ✅ Formatação automática da mensagem
+- ✅ Inclusão de observações
+- ✅ Cálculo de subtotais e total
+- ✅ Abertura em nova aba
 
-```jsx
-// Exemplo completo de integração com carrinho
-import React, { useState } from 'react';
-import ProductModal from './components/ProductModal';
-import { formatPrice } from './lib/utils';
+## 🎨 Design System
 
-function MenuApp() {
-  const [cart, setCart] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+### Cores
+- **Primária**: Vermelho (#dc2626) - Botões e elementos de destaque
+- **Secundária**: Verde (#16a34a) - Botão WhatsApp
+- **Neutra**: Cinza (#6b7280) - Textos secundários
 
-  const addToCart = (item) => {
-    setCart(prev => [...prev, item]);
-    setModalOpen(false);
-  };
+### Tipografia
+- **Títulos**: Playfair Display (elegante)
+- **Corpo**: Inter (moderna e legível)
 
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
+### Componentes
+- **Cards**: Bordas arredondadas, sombras suaves
+- **Botões**: Estados hover, transições suaves
+- **Modais**: Backdrop blur, animações de entrada/saída
 
-  return (
-    <div className="p-4">
-      {/* Menu */}
-      <div className="grid gap-4">
-        {menuItems.map(item => (
-          <div 
-            key={item.id}
-            onClick={() => {
-              setSelectedProduct(item);
-              setModalOpen(true);
-            }}
-            className="p-4 border rounded-lg cursor-pointer hover:bg-gray-50"
-          >
-            <h3 className="font-bold">{item.name}</h3>
-            <p className="text-gray-600">{item.description}</p>
-            <p className="text-lg font-bold text-red-600">{formatPrice(item.price)}</p>
-          </div>
-        ))}
-      </div>
+## 🚀 Deploy
 
-      {/* Modal */}
-      <ProductModal
-        product={selectedProduct}
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-        onAddToCart={addToCart}
-      />
+### Vercel (Recomendado)
+1. Conecte seu repositório ao Vercel
+2. Configure as variáveis de ambiente se necessário
+3. Deploy automático a cada push
 
-      {/* Carrinho */}
-      <div className="fixed bottom-4 right-4 bg-red-600 text-white p-4 rounded-full">
-        🛒 {cart.length} itens - {formatPrice(getTotalPrice())}
-      </div>
-    </div>
-  );
+### Netlify
+1. Faça build: `npm run build`
+2. Faça upload da pasta `dist/`
+3. Configure o domínio personalizado
+
+### GitHub Pages
+1. Adicione no `package.json`:
+```json
+{
+  "homepage": "https://seu-usuario.github.io/seu-repo",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  }
 }
 ```
 
-## 📝 Notas
+## 🤝 Contribuição
 
-- Os componentes são compatíveis com React 16.8+
-- Requer Tailwind CSS para estilização
-- Animações suaves e acessibilidade incluídas
-- Totalmente customizável através de CSS e props 
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 📞 Suporte
+
+Para dúvidas ou suporte:
+- 📧 Email: contato@integra.com.br
+- 📱 WhatsApp: (11) 99999-9999
+
+---
+
+Desenvolvido com ❤️ para o Integra Bar & Restaurante 
