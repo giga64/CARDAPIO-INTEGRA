@@ -4,28 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Integra Bar & Restaurante</title>
-    
     <link rel="stylesheet" href="style.css">
-    
-    <style>
-        .fade-in-hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
 </head>
 <body>
 
     <header class="header">
-        <img src="logo.png" alt="Logo Integra Bar & Restaurante" class="logo">
+        <img src="logo-integra.png" alt="Logo Integra Bar & Restaurante" class="logo">
     </header>
 
     <div class="container">
+
+        <div class="intro-text">
+            <h1 class="font-playfair">Nosso Cardápio Digital</h1>
+            <p>
+              Desfrute dos sabores únicos do nosso gastropub. Clique nos pratos para ver detalhes 
+              e monte seu pedido para delivery ou retirada.
+            </p>
+        </div>
 
         <div class="menu-section">
             <h2>Entradas</h2>
@@ -112,601 +107,80 @@
                 <span class="price">R$ 20,90</span>
             </div>
         </div>
-
-        <div class="menu-section">
-            <h2>Feijoada</h2>
-            <div class="notes">Disponível aos sábados das 12h às 16h.<br>Acompanha: Torresmo, Farofa, Vinagrete e Azeitona.</div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">PORÇÃO SERVE 2 PESSOAS</span></div>
-                <span class="price">R$ 45,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">PORÇÃO SERVE 4 PESSOAS</span></div>
-                <span class="price">R$ 69,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">CALDINHO DE FEIJOADA</span></div>
-                <span class="price">R$ 19,90</span>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Caranguejo</h2>
-             <div class="notes">Disponível nas quintas (17h às 23h) e aos sábados (12h às 16h).<br>Aos Domingos (Consultar o garçom).</div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">PORÇÃO COM 3 UNIDADES (consumo interno)</span></div>
-                <span class="price">R$ 19,99</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">UNIDADE</span></div>
-                <span class="price">R$ 7,90</span>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Petiscos</h2>
-            <h3 class="subsection-title">Aves / Peixes</h3>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">ISCA DE PEIXE COM FRITAS</div>
-                    <div class="item-description">Filé de peixe empanado com tempero especial e acompanhado de fritas</div>
-                </div>
-                <span class="price">R$ 54,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">ISCA DE FRANGO CROCANTE COM FRITAS</span></div>
-                <span class="price">R$ 52,90</span>
-            </div>
-
-            <h3 class="subsection-title">Camarão</h3>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CAMARÃO EMPANADO COM FRITAS</div>
-                    <div class="item-description">Filé de camarão empanado, acompanhado de molhos mix</div>
-                </div>
-                <span class="price">R$ 62,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ DE CAMARÃO ALHO E ÓLEO</div>
-                    <div class="item-description">Refogado na cebola e acompanhado batatas fritas</div>
-                </div>
-                <span class="price">R$ 67,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CAMARÃO ALHO E ÓLEO</div>
-                    <div class="item-description">Camarão com casca salteado no alho crocante, acompanhado de fritas</div>
-                </div>
-                <span class="price">R$ 58,90</span>
-            </div>
-
-            <h3 class="subsection-title">Filé / Picanha / Maminha / Carne de Sol</h3>
-             <div class="menu-item">
-                <div class="item-details"><span class="item-name">MAMINHA TRINCHADA COM FRITAS, FAROFA E VINAGRETE</span></div>
-                <span class="price">R$ 59,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">MEDALHÃO DE FILÉ COM BATATAS RECHEADAS</div>
-                     <div class="item-description">Acompanhado de 2 batatas recheadas: camarão, carne ou frango (só um sabor)</div>
-                </div>
-                <span class="price">R$ 68,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ AO MOLHO GORGONZOLA</div>
-                    <div class="item-description">Acompanhado com torradas</div>
-                </div>
-                <span class="price">R$ 66,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ COM FRITAS</div>
-                    <div class="item-description">Filé com cubos grelhados e batata frita</div>
-                </div>
-                <span class="price">R$ 66,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ AO MOLHO MADEIRA</div>
-                    <div class="item-description">Acompanhado de batata frita</div>
-                </div>
-                <span class="price">R$ 68,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CARNE DE SOL SERTANEJA</div>
-                    <div class="item-description">Acompanhado de macaxeira e queijo de coalho</div>
-                </div>
-                <span class="price">R$ 64,90</span>
-            </div>
-
-            <h3 class="subsection-title">Costela Suína</h3>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">COSTELINHA BARBECUE - 500g</span><div class="item-description">Acompanhado de fritas</div></div>
-                <span class="price">R$ 58,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">COSTELINHA BARBECUE - 1Kg</span><div class="item-description">Acompanhado de fritas</div></div>
-                <span class="price">R$ 86,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">LOMBO SUÍNO GRELHADO</span></div>
-                <span class="price">R$ 49,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details"><span class="item-name">COSTELA EMPANADA COM MOLHO PICANTE</span></div>
-                <span class="price">R$ 44,90</span>
-            </div>
-
-            <h3 class="subsection-title">Petiscos Mix</h3>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">PETISCÃO INTEGRA</div>
-                    <div class="item-description">Carne de Sol, calabresa acebolada e macaxeira</div>
-                </div>
-                <span class="price">R$ 59,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">PETISCÃO PICANHA</div>
-                    <div class="item-description">Picanha Trinchada, cebolas anel empanadas, queijo a milanesa e molho</div>
-                </div>
-                <span class="price">R$ 63,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">PETISCÃO DE CAMARÃO</div>
-                    <div class="item-description">Camarão empanado, creme de camarão e pãozinhos</div>
-                </div>
-                <span class="price">R$ 65,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">PETISCÃO DO MAR</div>
-                    <div class="item-description">Camarão, isca de peixe empanado, fritas e molho</div>
-                </div>
-                <span class="price">R$ 62,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CIGARRETE</div>
-                    <div class="item-description">Canudinho de massas com recheio de queijo, empanado na farinha de ervas.</div>
-                </div>
-                <span class="price">R$ 42,90</span>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Refeições</h2>
-            <h3 class="subsection-title">Grelhados</h3>
-             <div class="notes">Acompanhamentos - escolha 3 opções:<br>Arroz de leite ou branco | Feijão verde ou preto | Pirão de queijo | Purê de batata | Farofa D'água | Farofa amanteigada | Vinagrete | Batata Frita</div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">PICANHA (2/3 PESSOAS) 500g</span></div>
-                <span class="price">R$ 119,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details"><span class="item-name">MAMINHA (4 PESSOAS) 700g</span></div>
-                <span class="price">R$ 135,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details"><span class="item-name">CARNE DE SOL (2/3 PESSOAS) 500g</span></div>
-                <span class="price">R$ 99,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details"><span class="item-name">PEIXE MECA – Em posta (3 PESSOAS) 700g</span></div>
-                <span class="price">R$ 119,90</span>
-            </div>
-
-            <h3 class="subsection-title">Outras Refeições</h3>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CAMARÃO A GREGA (2 PESSOAS)</div>
-                    <div class="item-description">Camarão empanado com molho de tomate e gratinado com queijo, com arroz a grega</div>
-                </div>
-                <span class="price">R$ 89,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CAMARÃO INTEGRA</div>
-                    <div class="item-description">Camarão empanado e recheado com catupiry de ervas, servido com arroz cremoso e batata palha</div>
-                </div>
-                <div class="price price-multiple">
-                    <span>(2p) R$ 99,90</span>
-                    <span>(4p) R$ 149,90</span>
-                </div>
-            </div>
-             <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CAMARÃO INTERNACIONAL (2 PESSOAS)</div>
-                    <div class="item-description">Camarão salteados no azeite, arroz cremoso com molho branco, queijo, presunto e ervilha</div>
-                </div>
-                <span class="price">R$ 104,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CAMARÃO DO SERTÃO (2 PESSOAS)</div>
-                    <div class="item-description">Arroz cremoso, queijo de coalho, com carne de sol desfiada e camarão, pimenta biquinho, vinho branco, gratinado no queijo de coalho</div>
-                </div>
-                <span class="price">R$ 99,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CARBONARA DE CAMARÃO (2 PESSOAS)</div>
-                    <div class="item-description">Massa caseira com molho branco, vinho branco, pimenta, bacon e parmesão</div>
-                </div>
-                <span class="price">R$ 89,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CARBONARA DE FILÉ (2 PESSOAS)</div>
-                    <div class="item-description">Massa caseira com molho branco, vinho branco, pimenta, bacon e parmesão</div>
-                </div>
-                <span class="price">R$ 89,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CARNE DE SOL C/ QUEIJO DE MANTEIGA (2/3 PESSOAS)</div>
-                    <div class="item-description">Acompanha feijão verde e arroz de leite</div>
-                </div>
-                <span class="price">R$ 94,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">COSTELINHA AO BARBECUE (2/3 PESSOAS)</div>
-                    <div class="item-description">Costela suína, acompanha arroz a grega e batatas fritas</div>
-                </div>
-                <span class="price">R$ 96,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CUPIM NO BAFO (400g) (2/3 PESSOAS)</div>
-                    <div class="item-description">Ao molho madeira</div>
-                </div>
-                <span class="price">R$ 88,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FETTUTINE FRUTOS DO MAR (2/3 PESSOAS)</div>
-                    <div class="item-description">Massa salteada na manteiga de ervas com frutos do mar</div>
-                </div>
-                <span class="price">R$ 119,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ A MODA DO CHEFF (sem lactose) (2 PESSOAS)</div>
-                    <div class="item-description">Filé ao molho madeira, acompanhado de arroz cremoso e Batata Rustica</div>
-                </div>
-                <span class="price">R$ 92,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ DE MEDALHÃO AO MOLHO MADEIRA (2 PESSOAS)</div>
-                    <div class="item-description">Acompanha arroz a grega e purê de batata</div>
-                </div>
-                <span class="price">R$ 93,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ A PARMEGIANA (3 PESSOAS)</div>
-                    <div class="item-description">Acompanha batata frita</div>
-                </div>
-                <span class="price">R$ 103,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ A PARMEGIANA DE FRANGO (3 PESSOAS)</div>
-                    <div class="item-description">Acompanha batata frita</div>
-                </div>
-                <span class="price">R$ 89,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">PEIXE AO MOLHO DE CAMARÃO (2 PESSOAS)</div>
-                    <div class="item-description">Acompanha arroz e pirão</div>
-                </div>
-                <span class="price">R$ 105,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">PESCADO DO MANGUE (2 PESSOAS)</div>
-                    <div class="item-description">Camarão servido com arroz cremoso de carne de caranguejo e camarões empanados na farinha panko</div>
-                </div>
-                <span class="price">R$ 104,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">SALMÃO NA CHAPA (2 PESSOAS)</div>
-                    <div class="item-description">Filé de Salmão com camarão, legumes salteados e arroz com brócolis</div>
-                </div>
-                <span class="price">R$ 94,90</span>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Pratos Kids</h2>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">CARNE DE SOL PORTO BRASIL (100g)</div>
-                    <div class="item-description">Acompanhado de purê, arroz e fritas</div>
-                </div>
-                <span class="price">R$ 26,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ A PARMEGIANA (100g)</div>
-                    <div class="item-description">Em cubos com batatas fritas</div>
-                </div>
-                <span class="price">R$ 36,90</span>
-            </div>
-             <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">FILÉ DE FRANGO GRELHADO (100g)</div>
-                    <div class="item-description">Acompanhado de purê, arroz e fritas</div>
-                </div>
-                <span class="price">R$ 24,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details"><span class="item-name">HAMBURGUER KIDS COM FRITAS</span></div>
-                <span class="price">R$ 30,90</span>
-            </div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Sobremesas</h2>
-            <div class="menu-item"><div class="item-details"><div class="item-name">INTEGRA GELATTO DE MORANGO</div><div class="item-description">Brownie, picolé especial, morangos, Nutella e recheio de Ninho.</div></div><span class="price">R$ 38,90</span></div>
-            <div class="menu-item"><div class="item-details"><div class="item-name">BOLA DE SORVETE COM GANACHE DE CHOCOLATE</div><div class="item-description">Sorvete de creme, napolitano, morango ou chocolate.</div></div><span class="price">R$ 11,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CHEESECAKE DE FRUTAS VERMELHAS</span></div><span class="price">R$ 22,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CHEESECAKE DE DOCE DE LEITE</span></div><span class="price">R$ 22,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CHEESECAKE DE NUTELLA</span></div><span class="price">R$ 22,90</span></div>
-             <div class="menu-item"><div class="item-details"><div class="item-name">BROWNIE DE CHOCOLATE COM SORVETE</div><div class="item-description">Bola de sorvete de creme, crocante de castanha, morango e ganache de chocolate.</div></div><span class="price">R$ 24,90</span></div>
-            <div class="menu-item"><div class="item-details"><div class="item-name">PETIT GATEAU</div><div class="item-description">Petit Gateau de chocolate com sorvete de creme.</div></div><span class="price">R$ 24,90</span></div>
-            <div class="menu-item"><div class="item-details"><div class="item-name">BRIGABOLO</div><div class="item-description">Consultar sabores.</div></div><span class="price">R$ 24,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TORTA DE LIMÃO</span></div><span class="price">R$ 20,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CHEESCAKE DIET</span></div><span class="price">R$ 26,90</span></div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Espetinhos</h2>
-             <div class="notes">Obs: Não estarão disponíveis aos sábados das 12h às 17h e aos domingos das 12h às 16h.</div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CARNE</span></div><span class="price">R$ 9,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CARNE COM BACON</span></div><span class="price">R$ 10,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">FRANGO</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">FRANGO COM BACON</span></div><span class="price">R$ 9,10</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CORAÇÃO DE FRANGO</span></div><span class="price">R$ 8,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">LÍNGUA</span></div><span class="price">R$ 9,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">QUEIJO DE COALHO</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">RASPA DE QUEIJO DE MANTEIGA</span></div><span class="price">R$ 9,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">KAFITA BOVINA</span></div><span class="price">R$ 9,50</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">KAFITA DE CORDEIRO</span></div><span class="price">R$ 9,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">QUEIJO COM CAPA DE FILÉ</span></div><span class="price">R$ 13,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CALABRESA</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PICANHA BOVINA</span></div><span class="price">R$ 19,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">MEDALHÃO DE FILÉ</span></div><span class="price">R$ 13,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">MEDALHÃO DE FRANGO</span></div><span class="price">R$ 12,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PÃO DE ALHO</span></div><span class="price">R$ 8,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PÃO DE CARNE DE SOL</span></div><span class="price">R$ 11,90</span></div>
-        </div>
         
-        <div class="menu-section">
-            <h2>Saladas e Vegano</h2>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">SALADA DE FRANGO</div>
-                    <div class="item-description">Salada com peito de frango grelhado, folha, champignon, tomate seco, cenoura e crocante de parmesão ao molho de maracujá.</div>
-                </div>
-                <span class="price">R$ 47,50</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">SALADA DE CAMARÃO</div>
-                    <div class="item-description">Salada com camarão grelhado, folhas, champignon, tomate seco, cenoura e crocante de parmesão ao molho de iogurte e ervas</div>
-                </div>
-                <span class="price">R$ 54,90</span>
-            </div>
-            <div class="menu-item">
-                <div class="item-details">
-                    <div class="item-name">RISOTO VEGANO</div>
-                    <div class="item-description">Risoto de champignon com açafrão, legumes, castanha e azeite de ervas.</div>
-                </div>
-                <span class="price">R$ 44,90</span>
-            </div>
         </div>
-
-        <div class="menu-section">
-            <h2>Guarnições Extras</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PORÇÃO DE PURÊ | PIRÃO QUEIJO</span></div><span class="price">R$ 10,50</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PORÇÃO DE ARROZ</span></div><span class="price">Peq. R$ 8,50 | Grd. R$ 12,50</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PORÇÃO DE ARROZ ESPECIAL</span></div><span class="price">Peq. R$ 11,50 | Grd. R$ 15,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PÃOZINHO DA CASA</span></div><span class="price">R$ 8,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">FEIJÃO VERDE</span></div><span class="price">Peq. R$ 11,90 | Grd. R$ 16,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">MOLHOS</span></div><span class="price">R$ 3,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">ESPAGUETE</span></div><span class="price">R$ 12,00</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">VINAGRETE</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">FAROFA</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">EMBALAGEM (VIAGEM)</span></div><span class="price">R$ 2,90</span></div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Drinks</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CAIPIRINHA</span></div><span class="price">R$ 11,90 | Especial R$ 14,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CAIPIFRUTA</span></div><span class="price">R$ 19,90 | Absolut R$ 23,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CAIPIROSKA</span></div><span class="price">R$ 15,90 | Absolut R$ 21,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">MARGARITA BLUE</span><div class="item-description">Tequila, Cointreau, Sumo de limão, Curaçau Blue e Borda de sal</div></div><span class="price">R$ 20,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">MOJITO</span><div class="item-description">Soda, Run, limão e hortelã</div></div><span class="price">R$ 17,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BEIJO RUSSO</span><div class="item-description">Vodka, soda, 3 cerejas, morango e groselha</div></div><span class="price">R$ 18,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">SEX ON THE BEACH</span><div class="item-description">Vodka Smirnoff, licor de pêssego, suco de laranja, xarope de groselha</div></div><span class="price">R$ 19,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">AMARULA CREAM FROZEN</span><div class="item-description">Amarula, sorvete de creme, leite condensado, vodka e castanha de caju</div></div><span class="price">R$ 21,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TANQUERAY</span><div class="item-description">Morango, tangerina e mel</div></div><span class="price">R$ 23,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TANQUERAY TROPICAL</span><div class="item-description">Dose de Gin Tanqueray, limão siciliano e Redbull tropical</div></div><span class="price">R$ 26,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">PINA COLADA</span><div class="item-description">Concentrado de abacaxi, Run, creme de leite e leite de coco</div></div><span class="price">R$ 20,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TEQUILA SUNRISE</span><div class="item-description">Tequila, suco de laranja, groselha</div></div><span class="price">R$ 23,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">APEROL SPRITZ</span><div class="item-description">Dose de Aperol, rodelas de laranja com espumante</div></div><span class="price">R$ 20,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">LAMPADA</span><div class="item-description">Concentrado de maracujá, vodka, sorvete de creme, leite condensado e creme de leite</div></div><span class="price">R$ 21,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">FROZEN DE MORANGO</span></div><span class="price">R$ 21,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">MOSCOW MULE</span><div class="item-description">Vodka, sumo de limão, xarope de açúcar, espuma de gengibre</div></div><span class="price">R$ 22,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">SUNSET</span><div class="item-description">Concentrado de laranja, groselha, vodka, run, Curaçau Blue e Coconut</div></div><span class="price">R$ 20,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TROPICANA</span><div class="item-description">Pitaya macerado, frozen de manga e gin</div></div><span class="price">R$ 24,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">NEGRONI</span><div class="item-description">Campari, Gin e Vermouth</div></div><span class="price">R$ 19,90</span></div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Cervejas</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BOHEMIA – Puro Malte</span></div><span class="price">R$ 10,40</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BRAHMA – Duplo Malte</span></div><span class="price">R$ 11,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BECK'S – Puro Malte</span></div><span class="price">R$ 15,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">STELLA – 600ml</span></div><span class="price">R$ 14,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">ORIGINAL – 600ml</span></div><span class="price">R$ 14,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">SPATEN – 600ml</span></div><span class="price">R$ 14,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BUDWEISER – 600ml</span></div><span class="price">R$ 12,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BECK'S – Long Neck</span></div><span class="price">R$ 9,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BUDWEISER – Long Neck</span></div><span class="price">R$ 9,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">SPATEN – Long Neck</span></div><span class="price">R$ 9,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CERVEJA BRAHMA/BUDWEISER SEM ÁLCOOL – Long Neck</span></div><span class="price">R$ 10,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">STELLA – Long Neck</span></div><span class="price">R$ 9,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CORONA – Long Neck</span></div><span class="price">R$ 11,99</span></div>
-        </div>
-        
-        <div class="menu-section">
-            <h2>Bebidas</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">ÁGUA MINERAL – 300ml</span></div><span class="price">R$ 4,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">ÁGUA MINERAL COM GÁS – 300ml</span></div><span class="price">R$ 4,99</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">ÁGUA DE COCO – Copo</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">REFRIGERANTE LATA</span><div class="item-description">Schweppes Citrus / Aquarius Fresh</div></div><span class="price">R$ 7,50</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">LIMONADA SUIÇA</span></div><span class="price">R$ 11,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">SUCOS – Copo</span><div class="item-description">Consultar fruta</div></div><span class="price">R$ 8,30</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">SUCOS – Jarra 1L</span></div><span class="price">R$ 26,00</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CAFÉ EXPRESSO</span></div><span class="price">Peq. R$ 5,90 | Grd. R$ 8,90</span></div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Destilados</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TEQUILA – Dose</span></div><span class="price">R$ 18,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">RUM MONTILA</span><div class="item-description">Carta Branca | Cristal | Ouro</div></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">VODKA SMIRNOFF – Dose</span></div><span class="price">R$ 8,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">VODKA ABSOLUT | KETEL ONE – Dose</span></div><span class="price">R$ 14,70</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">VODKA CIROC – Dose</span></div><span class="price">R$ 19,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">GIN GORDON'S – Dose</span></div><span class="price">R$ 13,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">GIN SEAGERS</span></div><span class="price">R$ 8,00</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">GIN TANQUERAY</span></div><span class="price">R$ 17,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CACHAÇA ESPECIAIS</span></div><span class="price">R$ 9,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CACHAÇA PITÚ</span></div><span class="price">R$ 5,90</span></div>
-        </div>
-        
-        <div class="menu-section">
-            <h2>Whisky</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">TEACHER'S – Dose</span></div><span class="price">R$ 7,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">RED LABEL (8 anos) – Dose</span></div><span class="price">R$ 12,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BLACK WHITE (8 anos) – Dose</span></div><span class="price">R$ 9,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">OLD PARR (12 anos) – Dose</span></div><span class="price">R$ 17,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">JACK DANIELS (12 anos) – Dose</span></div><span class="price">R$ 18,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CHIVAS (12 anos) – Dose</span></div><span class="price">R$ 18,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BLACK LABEL (12 anos) – Dose</span></div><span class="price">R$ 18,90</span></div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Vinhos</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">ROLHA DE VINHO</span></div><span class="price">R$ 50,00</span></div>
-            <h3 class="subsection-title">Vinhos Tintos - Chile</h3>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CASAS DEL MAIPO (Carménère)</span></div><span class="price">R$ 109,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">CASAS DEL MAIPO (Cabernet Sauvignon)</span></div><span class="price">R$ 109,90</span></div>
-            <h3 class="subsection-title">Vinhos Brancos - Argentino</h3>
-            <div class="menu-item"><div class="item-details"><span class="item-name">4 ESTACIONES (Viognier)</span></div><span class="price">R$ 109,90</span></div>
-        </div>
-
-    </div>
 
     <footer class="footer">
         <div class="footer-content">
+             <div class="footer-section">
+                 <img src="logo-integra.png" alt="Integra Bar & Restaurante" class="logo" style="height: 3rem; margin: 0 auto 1rem auto; filter: brightness(0) invert(1);">
+                 <p>Gastropub contemporâneo com alma de comida afetiva brasileira.</p>
+             </div>
             <div class="footer-section">
-                <h3>Integra Unidade Candelária</h3>
-                <p>Av. Integração - 200A</p>
-                <p>Candelária - Natal/RN</p>
+                <h3>Unidade Candelária</h3>
+                <p>Av. Integração - 200A, Candelária - Natal/RN</p>
             </div>
-            
             <div class="footer-section">
-                <h3>Integra Unidade Cidade Verde</h3>
-                <p>Rua Ingazeira - 1720</p>
-                <p>Nova Parnamirim/RN</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <p><strong>Telefone:</strong> (84) 99933-9959</p>
-                <p><strong>WhatsApp:</strong> (84) 99933-9959</p>
+                <h3>Unidade Cidade Verde</h3>
+                <p>Rua Ingazeira - 1720, Nova Parnamirim/RN</p>
             </div>
         </div>
-        
         <div class="footer-divider">
-            © 2024 Integra Bar & Restaurante. Todos os direitos reservados.
+            © 2024 Integra Bar & Restaurante. (84) 99933-9959.
         </div>
     </footer>
 
-    <a href="https://wa.me/5584999339959?text=Ol%C3%A1!%20Vi%20o%20card%C3%A1pio%20no%20site%20e%20gostaria%20de%20fazer%20um%20pedido." class="whatsapp-button" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <a href="https://wa.me/5584999339959?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-button" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
     </a>
 
-    <!-- Modal do Item -->
     <div id="itemModal" class="modal">
+        <div class="modal-overlay"></div>
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <div class="modal-header">
+              <h3 id="modalItemName">Nome do Produto</h3>
+              <button class="close">&times;</button>
+            </div>
             <div class="modal-body">
-                <div class="item-image-container">
-                    <img id="modalItemImage" src="placeholder-image.jpg" alt="Foto do item" class="item-image">
-                    <div class="image-placeholder">
-                        <span>📸</span>
-                        <p>Foto será adicionada em breve</p>
-                    </div>
+                <p id="modalItemDescription" class="item-description"></p>
+                <div class="observations-section">
+                    <label for="itemObservations">Observações (opcional):</label>
+                    <textarea id="itemObservations" class="observations-textarea" placeholder="Ex: Sem cebola, bem passado..."></textarea>
                 </div>
-                <div class="item-info">
-                    <h3 id="modalItemName"></h3>
-                    <p id="modalItemDescription" class="item-description"></p>
-                    <div class="price-section">
-                        <span id="modalItemPrice" class="price"></span>
+                <div class="quantity-section">
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                        <input type="number" id="itemQuantity" value="1" min="1" max="99" readonly>
+                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
                     </div>
-                    <div class="quantity-section">
-                        <label for="itemQuantity">Quantidade:</label>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                            <input type="number" id="itemQuantity" value="1" min="1" max="99">
-                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-                        </div>
-                    </div>
-                    <div class="observations-section">
-                        <label for="itemObservations">Observações (opcional):</label>
-                        <textarea id="itemObservations" class="observations-textarea" placeholder="Ex: Sem cebola, bem passado, molho à parte..."></textarea>
-                    </div>
-                    <button class="add-to-cart-btn" onclick="addToCart()">
-                        🛒 Adicionar ao Carrinho
-                    </button>
+                    <span id="modalItemPrice" class="price" style="font-size: 1.5rem;"></span>
                 </div>
+                <button class="add-to-cart-btn" onclick="addToCart()">
+                    Adicionar ao Carrinho
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Carrinho de Compras -->
     <div id="cart" class="cart">
+      <div class="modal-overlay"></div>
         <div class="cart-header">
             <h3>🛒 Carrinho</h3>
-            <span id="cartCount" class="cart-count">0</span>
-            <button class="close-cart" onclick="toggleCart()">×</button>
+            <button class="close" onclick="toggleCart()">×</button>
         </div>
-        <div class="cart-items" id="cartItems">
-            <!-- Items do carrinho serão adicionados aqui -->
-        </div>
+        <div class="cart-items" id="cartItems"></div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
+            <div class="cart-total" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span class="font-playfair" style="font-size: 1.25rem; font-weight: 600;">Total:</span>
+                <strong style="font-size: 1.5rem; color: hsl(var(--primary));">R$ <span id="cartTotal">0,00</span></strong>
             </div>
             <button class="send-to-whatsapp-btn" onclick="sendToWhatsApp()">
-                📱 Enviar Pedido
+                Enviar Pedido
             </button>
         </div>
     </div>
 
-    <!-- Botão do Carrinho -->
-    <button id="cartButton" class="cart-button" onclick="toggleCart()">
+    <button id="cartButton" class="cart-button" onclick="toggleCart()" style="display: none;">
         🛒 <span id="cartButtonCount">0</span>
     </button>
 
