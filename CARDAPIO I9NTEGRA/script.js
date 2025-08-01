@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- 1. CONFIGURAÇÃO DO SUPABASE ---
-    const SUPABASE_URL = 'Chttps://llpyzevrzgfqwxvbguli.supabase.co'; // <-- COLE A SUA URL AQUI
+    const SUPABASE_URL = 'https://llpyzevrzgfqwxvbguli.supabase.co'; // <-- COLE A SUA URL AQUI
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxscHl6ZXZyemdmcXd4dmJndWxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MDk5MTIsImV4cCI6MjA2OTQ4NTkxMn0.RYHbYNr-7Ksb-WmuOTOrQETB1tx_IUP1FC_JBuzdn60'; // <-- COLE A SUA CHAVE AQUI
 
     const { createClient } = supabase;
