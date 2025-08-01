@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Integra Bar & Restaurante</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .fade-in-hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
 </head>
 <body>
 
@@ -38,25 +27,25 @@
             </div>
         </div>
     </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Integra Unidade Candelária</h3>
-                <p>Av. Integração - 200A</p>
-                <p>Candelária - Natal/RN</p>
+                <p>Av. Integração - 200A</p><p>Candelária - Natal/RN</p>
             </div>
-            
             <div class="footer-section">
                 <h3>Integra Unidade Cidade Verde</h3>
-                <p>Rua Ingazeira - 1720</p>
-                <p>Nova Parnamirim/RN</p>
+                <p>Rua Ingazeira - 1720</p><p>Nova Parnamirim/RN</p>
             </div>
-            
             <div class="footer-section">
                 <h3>Contato</h3>
                 <p><strong>Telefone:</strong> (84) 99933-9959</p>
                 <p><strong>WhatsApp:</strong> (84) 99933-9959</p>
             </div>
+        </div>
+        <div class="footer-divider">
+            © 2024 Integra Bar & Restaurante. Todos os direitos reservados.
         </div>
     </footer>
 
@@ -65,64 +54,15 @@
     </a>
 
     <div id="itemModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="modal-body">
-                <div class="item-image-container">
-                    <img id="modalItemImage" src="placeholder-image.jpg" alt="Foto do item" class="item-image">
-                    <div class="image-placeholder">
-                        <span>📸</span>
-                        <p>Foto será adicionada em breve</p>
-                    </div>
-                </div>
-                <div class="item-info">
-                    <h3 id="modalItemName"></h3>
-                    <p id="modalItemDescription" class="item-description"></p>
-                    <div class="price-section">
-                        <span id="modalItemPrice" class="price"></span>
-                    </div>
-                    <div class="quantity-section">
-                        <label for="itemQuantity">Quantidade:</label>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                            <input type="number" id="itemQuantity" value="1" min="1" max="99">
-                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-                        </div>
-                    </div>
-                    <div class="observations-section">
-                        <label for="itemObservations">Observações (opcional):</label>
-                        <textarea id="itemObservations" class="observations-textarea" placeholder="Ex: Sem cebola, bem passado, molho à parte..."></textarea>
-                    </div>
-                    <button class="add-to-cart-btn" onclick="addToCart()">
-                        🛒 Adicionar ao Carrinho
-                    </button>
-                </div>
-            </div>
         </div>
-    </div>
-
     <div id="cart" class="cart">
-        <div class="cart-header">
-            <h3>🛒 Carrinho</h3>
-            <span id="cartCount" class="cart-count">0</span>
-            <button class="close-cart" onclick="toggleCart()">×</button>
         </div>
-        <div class="cart-items" id="cartItems">
-            </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <strong>Total: R$ <span id="cartTotal">0,00</span></strong>
-            </div>
-            <button class="send-to-whatsapp-btn" onclick="sendToWhatsApp()">
-                📱 Enviar Pedido
-            </button>
-        </div>
-    </div>
-
-    <button id="cartButton" class="cart-button" onclick="toggleCart()">
+    <button id="cartButton" class="cart-button" onclick="toggleCart()" style="display: none;">
         🛒 <span id="cartButtonCount">0</span>
     </button>
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
