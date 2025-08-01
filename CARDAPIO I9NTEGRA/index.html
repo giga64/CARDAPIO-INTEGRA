@@ -25,6 +25,18 @@
 
     <div class="container">
 
+        <div class="menu-controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar no cardápio...">
+            </div>
+            <div class="filter-container" id="filterContainer">
+                </div>
+        </div>
+        <div class="menu-content" id="menuContent">
+            <div class="menu-section fade-in-hidden fade-in-visible">
+                <h2>Cardápio Integra Bar & Restaurante</h2>
+                <p>Bem-vindo ao nosso cardápio! Aqui você encontrará uma seleção deliciosa de pratos, bebidas e sobremesas. Aproveite!</p>
+            </div>
         <div class="menu-section">
             <h2>Entradas</h2>
             <div class="menu-item"><div class="item-details"><span class="item-name">BARRIGUINHA DE PORCO</span></div><span class="price">R$ 42,90</span></div>
@@ -389,7 +401,7 @@
     <button id="cartButton" class="cart-button" onclick="toggleCart()">
         🛒 <span id="cartButtonCount">0</span>
     </button>
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 </html>
