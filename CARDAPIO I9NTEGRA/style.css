@@ -445,7 +445,7 @@ body {
     right: 0;
     width: 100%;
     max-width: 420px;
-    height: 100vh;
+    height: 100%;
     background: hsl(var(--card));
     box-shadow: var(--shadow-modal);
     z-index: 5000;
@@ -508,6 +508,8 @@ body {
 .cart-footer {
   padding: 1.5rem;
   border-top: 1px solid hsl(var(--border));
+  /* Adiciona espaço na parte inferior para a barra de navegação do celular */
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 20px));
 }
 
 .send-to-whatsapp-btn {
@@ -546,5 +548,22 @@ body {
     .price {
         align-self: flex-end;
         margin-top: 0.5rem;
+    }
+    /* AJUSTE PARA BOTÕES MENORES NO CELULAR */
+    .whatsapp-button, .cart-button {
+        width: 52px;
+        height: 52px;
+        bottom: 15px;
+    }
+    .whatsapp-button {
+        right: 15px;
+    }
+    .cart-button {
+        left: 15px;
+        font-size: 1.2rem; /* Diminui o ícone do carrinho */
+    }
+    .whatsapp-button svg { /* Se você usar um ícone SVG para o WhatsApp */
+        width: 22px;
+        height: 22px;
     }
 }
