@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Integra Bar & Restaurante</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .fade-in-hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
 
@@ -32,37 +43,51 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Integra Unidade Candelária</h3>
-                <p>Av. Integração - 200A</p><p>Candelária - Natal/RN</p>
+                <p>Av. Integração - 200A</p>
+                <p>Candelária - Natal/RN</p>
             </div>
+            
             <div class="footer-section">
                 <h3>Integra Unidade Cidade Verde</h3>
-                <p>Rua Ingazeira - 1720</p><p>Nova Parnamirim/RN</p>
+                <p>Rua Ingazeira - 1720</p>
+                <p>Nova Parnamirim/RN</p>
             </div>
+            
             <div class="footer-section">
                 <h3>Contato</h3>
                 <p><strong>Telefone:</strong> (84) 99933-9959</p>
                 <p><strong>WhatsApp:</strong> (84) 99933-9959</p>
             </div>
         </div>
+        
         <div class="footer-divider">
             © 2024 Integra Bar & Restaurante. Todos os direitos reservados.
         </div>
     </footer>
 
-    <a href="https://wa.me/5584999339959?text=Ol%C3%A1!%20Vi%20o%20card%C3%A1pio%20no%20site%20e%20gostaria%20de%20fazer%20um%20pedido." class="whatsapp-button" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
     <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="item-image-container">
+                    <img id="modalItemImage" src="" alt="Foto do item" class="item-image" style="display: none;">
+                    <div class="image-placeholder">
+                        <span>📸</span>
+                        <p>Foto será adicionada em breve</p>
+                    </div>
+                </div>
+                <div class="item-info">
+                    <h3 id="modalItemName"></h3>
+                    <p id="modalItemDescription" class="item-description"></p>
+                    <div class="price-section">
+                        <span id="modalItemPrice" class="price"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-    <div id="cart" class="cart">
-        </div>
-    <button id="cartButton" class="cart-button" onclick="toggleCart()" style="display: none;">
-        🛒 <span id="cartButtonCount">0</span>
-    </button>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
