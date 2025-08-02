@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 2. ESTADO DA APLICAÇÃO ---
     let allProducts = [];
     let allCategories = [];
-
+    
     // --- 3. FUNÇÃO PRINCIPAL ---
     async function initializeApp() {
         await fetchData();
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (catError || prodError) {
             console.error('Erro ao buscar dados:', catError || prodError);
-            if(menuContainer) menuContainer.innerHTML = '<div class="loading-placeholder"><p>Erro ao carregar o cardápio. Verifique as chaves e políticas de acesso no Supabase.</p></div>';
+            if(menuContainer) menuContainer.innerHTML = '<div class="loading-placeholder"><p>Erro ao carregar o cardápio. Tente recarregar a página.</p></div>';
             return;
         }
         allCategories = categoriesData;
@@ -45,22 +45,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderCategories() {
-        const container = document.getElementById('filterContainer');
-        if (!container) return;
-        container.innerHTML = ''; 
+        const desktopContainer = document.getElementById('filterContainerDesktop');
+        const mobileSelect = document.getElementById('categorySelect');
+        
+        if (!desktopContainer || !mobileSelect) return;
 
+        // Limpa ambos os containers
+        desktopContainer.innerHTML = ''; 
+        mobileSelect.innerHTML = '';
+
+        // Cria a opção "Todos" para ambos
         const allButton = document.createElement('button');
         allButton.className = 'filter-btn active';
         allButton.textContent = 'Todos';
         allButton.dataset.categoryId = 'all';
-        container.appendChild(allButton);
+        desktopContainer.appendChild(allButton);
 
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        allOption.textContent = 'Todas as Categorias';
+        mobileSelect.appendChild(allOption);
+
+        // Popula ambos com as categorias do Supabase
         allCategories.forEach(category => {
             const button = document.createElement('button');
             button.className = 'filter-btn';
             button.textContent = category.name;
             button.dataset.categoryId = category.id;
-            container.appendChild(button);
+            desktopContainer.appendChild(button);
+
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            mobileSelect.appendChild(option);
         });
     }
 
@@ -110,25 +127,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 5. OUVINTES DE EVENTOS ---
+    // --- 5. OUVINTES DE EVENTOS (ATUALIZADO PARA AMBOS OS FILTROS) ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
-        const filterContainer = document.getElementById('filterContainer');
+        const desktopContainer = document.getElementById('filterContainerDesktop');
+        const mobileSelect = document.getElementById('categorySelect');
 
-        if(searchInput && filterContainer) {
-            searchInput.addEventListener('input', () => {
-                const activeFilter = filterContainer.querySelector('.active');
-                const categoryId = activeFilter ? activeFilter.dataset.categoryId : 'all';
-                renderMenu(searchInput.value, categoryId);
+        if(searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value;
+                const activeDesktopFilter = desktopContainer.querySelector('.active');
+                const categoryId = activeDesktopFilter ? activeDesktopFilter.dataset.categoryId : mobileSelect.value;
+                renderMenu(searchTerm, categoryId);
             });
-            
-            filterContainer.addEventListener('click', (e) => {
+        }
+        
+        if(desktopContainer) {
+            desktopContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
-                    const currentActive = filterContainer.querySelector('.active');
+                    const currentActive = desktopContainer.querySelector('.active');
                     if (currentActive) currentActive.classList.remove('active');
                     e.target.classList.add('active');
+                    mobileSelect.value = e.target.dataset.categoryId; // Sincroniza com o select
                     renderMenu(searchInput.value, e.target.dataset.categoryId);
                 }
+            });
+        }
+        
+        if(mobileSelect) {
+            mobileSelect.addEventListener('change', (e) => {
+                const categoryId = e.target.value;
+                const desktopButton = desktopContainer.querySelector(`[data-category-id="${categoryId}"]`);
+                const currentActive = desktopContainer.querySelector('.active');
+                if (currentActive) currentActive.classList.remove('active');
+                if (desktopButton) desktopButton.classList.add('active');
+                renderMenu(searchInput.value, categoryId);
             });
         }
     }
@@ -140,8 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if(modal) {
             const closeBtn = modal.querySelector('.close');
             if(closeBtn) closeBtn.addEventListener('click', closeModal);
-            const overlay = modal.querySelector('.modal-overlay');
-            if(overlay) overlay.addEventListener('click', closeModal);
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && modal.style.display === 'block') closeModal();
             });
@@ -181,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupBackToTopButton() {
         const backToTopBtn = document.createElement('button');
         backToTopBtn.innerHTML = '↑';
-        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.className = 'back-to-top'; // Precisa de estilo no CSS se quiser que apareça
         document.body.appendChild(backToTopBtn);
 
         backToTopBtn.addEventListener('click', () => {

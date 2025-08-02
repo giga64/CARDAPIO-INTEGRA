@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Integra Bar & Restaurante</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .fade-in-hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
 </head>
 <body>
 
@@ -28,8 +17,11 @@
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Buscar no cardápio...">
             </div>
-            <div class="filter-container" id="filterContainer">
+            <div class="filter-container" id="filterContainerDesktop">
                 </div>
+            <div class="filter-container-mobile" id="filterContainerMobile">
+                <select id="categorySelect"></select>
+            </div>
         </div>
 
         <div id="menuContent">
@@ -41,25 +33,19 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>Integra Unidade Candelária</h3>
-                <p>Av. Integração - 200A</p>
-                <p>Candelária - Natal/RN</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Integra Unidade Cidade Verde</h3>
-                <p>Rua Ingazeira - 1720</p>
-                <p>Nova Parnamirim/RN</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <p><strong>Telefone:</strong> (84) 99933-9959</p>
-                <p><strong>WhatsApp:</strong> (84) 99933-9959</p>
-            </div>
+             <div class="footer-section">
+                 <h3>Integra Unidade Candelária</h3>
+                 <p>Av. Integração - 200A, Candelária - Natal/RN</p>
+             </div>
+             <div class="footer-section">
+                 <h3>Integra Unidade Cidade Verde</h3>
+                 <p>Rua Ingazeira - 1720, Nova Parnamirim/RN</p>
+             </div>
+             <div class="footer-section">
+                 <h3>Contato</h3>
+                 <p><strong>Telefone:</strong> (84) 99933-9959</p>
+             </div>
         </div>
-        
         <div class="footer-divider">
             © 2024 Integra Bar & Restaurante. Todos os direitos reservados.
         </div>
