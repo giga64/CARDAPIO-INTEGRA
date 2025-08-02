@@ -82,7 +82,7 @@ body {
 
 /* --- CONTAINER PRINCIPAL --- */
 .container {
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem; /* Padding ajustado */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -107,7 +107,7 @@ body {
   font-family: 'Playfair Display', serif;
   color: hsl(var(--primary));
   font-size: 2rem; /* Tamanho ajustado */
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid hsl(var(--muted));
@@ -117,7 +117,7 @@ body {
 .menu-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.5rem;
   padding: 1rem;
   margin-bottom: 0.5rem;
@@ -125,7 +125,12 @@ body {
   transition: var(--transition-smooth);
   cursor: pointer;
   border: 1px solid transparent;
+  border-bottom: 1px solid hsl(var(--border));
 }
+.menu-section .menu-item:last-child {
+    border-bottom: none;
+}
+
 
 .menu-item:hover {
   background: hsl(var(--muted) / 0.5);
@@ -150,8 +155,8 @@ body {
 }
 
 .price {
-  font-weight: 600;
-  color: hsl(var(--primary));
+  font-weight: 700;
+  color: hsl(var(--foreground));
   font-size: 1.1rem;
   white-space: nowrap;
   text-align: right;
@@ -195,127 +200,13 @@ body {
   font-size: 0.85rem;
 }
 
-/* --- NOVO VISUAL DO MODAL --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9996;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-}
-
-.modal-content {
-    background-color: var(--card);
-    margin: 5% auto;
-    padding: 0;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    max-height: 90vh;
-    overflow: hidden;
-    box-shadow: var(--shadow-modal);
-    animation: modalSlideIn 0.3s ease-out;
-}
-
-@keyframes modalSlideIn {
-    from { opacity: 0; transform: translateY(-50px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.close {
-    color: var(--muted-foreground);
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    z-index: 10;
-    border: none;
-}
-.close:hover { color: var(--foreground); }
-
-.modal-body {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.item-image-container {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    background: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.item-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.image-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #6c757d;
-}
-.image-placeholder span { font-size: 4rem; }
-.image-placeholder p { font-size: 0.95rem; font-weight: 500; }
-
-.item-info {
-    padding: 1.5rem;
-    width: 100%;
-}
-.item-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-.item-info .item-description {
-    color: var(--muted-foreground);
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-}
-
-.price-section .price {
-    background: var(--secondary);
-    border: 1px solid var(--border);
-    color: var(--primary);
-    padding: 0.5rem 1.5rem;
-    border-radius: 25px;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-/* --- FILTROS E BUSCA - VISUAL MELHORADO --- */
+/* --- FILTROS E BUSCA (VISUAL MELHORADO) --- */
 .menu-controls {
     background-color: hsl(var(--card)); /* Fundo branco sólido */
     padding: 1rem;
-    margin: 0 -1rem 2rem -1rem;
+    margin: 0 -1rem 1.5rem -1rem; /* Ajustado para espaçamento mobile */
     position: sticky;
-    top: 67px; /* Altura do header em mobile */
+    top: 60px; /* Altura do header em mobile */
     z-index: 990;
     border-bottom: 1px solid hsl(var(--border));
     box-shadow: 0 2px 8px -1px hsla(var(--foreground) / 0.1); /* Sombra suave */
@@ -328,7 +219,7 @@ body {
     border-radius: var(--radius);
     border: 1px solid hsl(var(--border));
     margin-bottom: 1rem;
-    background-color: hsl(var(--secondary)); /* Fundo levemente acinzentado */
+    background-color: hsl(var(--secondary));
 }
 
 .filter-container {
@@ -344,32 +235,32 @@ body {
 }
 
 .filter-btn {
-    padding: 0.6rem 1.4rem; /* Aumentando um pouco o padding */
-    border: 1px solid hsl(var(--border)); /* Borda visível */
-    background-color: hsl(var(--secondary)); /* Fundo levemente acinzentado */
-    color: hsl(var(--foreground)); /* Texto principal */
-    border-radius: 0.5rem; /* Bordas um pouco menos arredondadas */
+    padding: 0.6rem 1.4rem;
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--foreground));
+    border-radius: 0.5rem; /* Bordas mais retas */
     cursor: pointer;
     font-size: 0.95rem;
     font-weight: 500;
     white-space: nowrap;
-    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .filter-btn:hover {
-    background-color: hsl(var(--muted)); /* Fundo ao passar o mouse */
+    background-color: hsl(var(--muted));
     border-color: hsl(var(--muted-foreground));
-    color: hsl(var(--foreground));
 }
 
 .filter-btn.active {
-    background-color: hsl(var(--primary)); /* Cor primária sólida */
+    background-color: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
     border-color: hsl(var(--primary));
     box-shadow: 0 2px 6px -1px hsl(var(--primary) / 0.5); /* Sombra para indicar ativo */
+    transform: translateY(-2px); /* Efeito de elevação */
 }
 
-/* --- MODAL DE VISUALIZAÇÃO - VISUAL MELHORADO --- */
+/* --- MODAL (VISUAL MELHORADO) --- */
 .modal {
     display: none;
     position: fixed;
@@ -378,27 +269,34 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo um pouco mais escuro e menos transparente */
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo mais escuro */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
-    background-color: hsl(var(--card)); /* Fundo branco sólido */
-    margin: 5% auto;
+    background-color: hsl(var(--card));
     padding: 0;
-    border-radius: 12px;
+    border-radius: var(--radius);
     width: 90%;
-    max-width: 450px; /* Aumentando um pouco a largura máxima */
+    max-width: 420px;
     max-height: 90vh;
-    overflow: hidden;
-    box-shadow: 0 15px 40px -8px hsla(var(--foreground) / 0.2); /* Sombra mais definida */
+    overflow: hidden; /* Importante para as bordas da imagem */
+    box-shadow: var(--shadow-lg);
     animation: modalSlideIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes modalSlideIn {
-    from { opacity: 0; transform: translateY(-30px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .close {
@@ -407,35 +305,34 @@ body {
     top: 10px;
     right: 10px;
     font-size: 1.5rem;
-    font-weight: bold;
     cursor: pointer;
-    transition: color 0.2s ease-in-out;
-    background-color: hsl(var(--secondary)); /* Fundo leve para o botão fechar */
+    transition: all 0.2s ease-in-out;
+    background-color: hsl(var(--secondary));
     border-radius: 50%;
     width: 36px;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
     z-index: 10;
     border: none;
 }
-.close:hover { color: hsl(var(--foreground)); background-color: hsl(var(--muted)); }
+.close:hover { 
+    color: hsl(var(--foreground)); 
+    background-color: hsl(var(--muted));
+    transform: rotate(90deg);
+}
 
 .modal-body {
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
+    overflow-y: auto;
 }
 
 .item-image-container {
-    position: relative;
     width: 100%;
-    height: 280px; /* Aumentando um pouco a altura da imagem */
-    background: hsl(var(--muted)); /* Cor de fundo padrão para a imagem */
+    height: 250px;
+    background: hsl(var(--muted));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -461,28 +358,21 @@ body {
 .item-info {
     padding: 1.5rem;
     width: 100%;
-    background-color: hsl(var(--card)); /* Garantindo fundo branco para as informações */
 }
 .item-info h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 0.75rem;
-    color: hsl(var(--foreground)); /* Texto principal */
 }
 .item-info .item-description {
     color: hsl(var(--muted-foreground));
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
-.price-section {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 1.5rem;
-}
 .price-section .price {
-    background-color: hsl(var(--primary)); /* Cor primária sólida */
+    background-color: hsl(var(--primary));
     border: 1px solid hsl(var(--primary));
     color: hsl(var(--primary-foreground));
     padding: 0.6rem 2rem;
@@ -492,14 +382,8 @@ body {
     box-shadow: 0 2px 6px -1px hsl(var(--primary) / 0.5);
 }
 
-/* --- RESPONSIVIDADE PARA OS FILTROS --- */
-@media (min-width: 769px) {
-    .menu-controls {
-        top: 88px; /* Altura do header em desktop */
-    }
-}
 
-/* --- RESPONSIVIDADE --- */
+/* --- RESPONSIVIDADE (Consolidado) --- */
 @media (min-width: 769px) {
     .header {
         padding: 1.5rem 1rem;
@@ -510,137 +394,12 @@ body {
 }
 
 @media (max-width: 480px) {
-  .menu-section { padding: 1rem; }
-  .menu-item { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .price { align-self: flex-end; }
-  .container { padding: 1.5rem 0.5rem; }
-}
-
-@media (max-width: 768px) {
-  .header { padding: 1rem; }
-  .logo { width: 120px; }
-  .menu-section h2 { font-size: 1.5rem; }
-  .menu-item { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .price { align-self: flex-end; }
-  .container { padding: 1.5rem 0.5rem; }
-} 
-/* --- ANIMAÇÕES E TRANSIÇÕES --- */
-.menu-item {
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-/* Torna a barra de filtros mais elegante e funcional */
-.menu-controls {
-    background: hsla(0, 0%, 97%, 0.8); /* Fundo do cardápio com transparência */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px); /* Efeito de vidro fosco para iOS */
-    padding: 1rem;
-    margin: 0 -1rem 2rem -1rem; /* Alinha com as bordas do container */
-    position: sticky;
-    top: 67px; /* Posição abaixo do header no celular */
-    z-index: 990;
-    border-bottom: 1px solid hsl(var(--border));
-    box-shadow: 0 4px 12px -2px hsla(var(--foreground), 0.05);
-}
-
-#searchInput {
-    background-color: hsl(var(--secondary));
-    border: 1px solid hsl(var(--border));
-}
-
-.filter-container {
-    padding-bottom: 0.5rem; /* Evita que a sombra do botão seja cortada */
-}
-
-.filter-btn {
-    padding: 0.6rem 1.4rem; /* Mais área de toque */
-    border: 1px solid hsl(var(--border));
-    background-color: hsl(var(--secondary));
-    color: hsl(var(--foreground));
-    border-radius: 999px; /* Formato de "pílula" */
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-}
-
-.filter-btn:hover {
-    background-color: hsl(var(--muted));
-}
-
-.filter-btn.active {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    border-color: hsl(var(--primary));
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px -1px hsla(var(--primary), 0.5);
-}
-
-/* Novo visual para o Modal de Visualização */
-.modal-content {
-    max-width: 400px;
-    overflow: hidden;
-    padding: 0;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    border: none;
-    font-size: 1.2rem;
-    z-index: 10;
-}
-
-.modal-body {
-    padding: 0;
-}
-
-.item-image-container {
-    width: 100%;
-    height: 250px;
-    background-color: var(--secondary);
-}
-
-.item-info {
-    padding: 1.5rem;
-}
-
-.item-info h3 { /* Nome do produto */
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    margin-bottom: 0.75rem;
-}
-
-.item-info .item-description { /* Descrição */
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.item-info .price { /* Preço */
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 0.6rem 2rem;
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 6px -1px hsla(var(--primary), 0.5);
-}
-
-
-/* --- AJUSTES FINAIS PARA DESKTOP --- */
-@media (min-width: 769px) {
-    .header {
-        padding: 1.5rem 1rem;
+    .menu-item { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 0.5rem; 
     }
-    .menu-controls {
-        top: 88px; /* Altura do header em desktop */
+    .price { 
+        align-self: flex-end; 
     }
 }
