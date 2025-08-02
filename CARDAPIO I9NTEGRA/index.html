@@ -12,25 +12,31 @@
         <img src="logo.png" alt="Logo Integra Bar & Restaurante" class="logo">
     </header>
 
-    <div class="container" id="menu-container">
-        <div class="menu-section">
-            <h2>Entradas</h2>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BARRIGUINHA DE PORCO</span></div><span class="price">R$ 42,90</span></div>
-            <div class="menu-item"><div class="item-details"><span class="item-name">BATATAS FRITAS</span></div><span class="price">R$ 25,90</span></div>
+    <div class="container">
+        <div class="menu-controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar no cardápio...">
+            </div>
+            <div class="filter-container" id="filterContainer">
+                </div>
+        </div>
+
+        <div id="menuContent">
+            <div class="loading-placeholder">
+                <p>Carregando cardápio...</p>
             </div>
         </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Integra Unidade Candelária</h3>
-                <p>Av. Integração - 200A</p>
-                <p>Candelária - Natal/RN</p>
+                <p>Av. Integração - 200A</p><p>Candelária - Natal/RN</p>
             </div>
             <div class="footer-section">
                 <h3>Integra Unidade Cidade Verde</h3>
-                <p>Rua Ingazeira - 1720</p>
-                <p>Nova Parnamirim/RN</p>
+                <p>Rua Ingazeira - 1720</p><p>Nova Parnamirim/RN</p>
             </div>
             <div class="footer-section">
                 <h3>Contato</h3>
@@ -43,32 +49,20 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/5584999339959?text=Ol%C3%A1!%20Vi%20o%20card%C3%A1pio%20no%20site%20e%20gostaria%20de%20fazer%20um%20pedido." class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
     <div id="itemModal" class="modal">
-        <div class="modal-overlay" onclick="closeModal()"></div>
-        <div class="modal-content">
-            <button class="close" onclick="closeModal()">&times;</button>
-            <div class="modal-body">
-                <div class="item-image-container">
-                    <img id="modalItemImage" src="" alt="Foto do produto" class="item-image">
-                    <div class="image-placeholder">
-                        <span>📸</span>
-                        <p>Foto em breve</p>
-                    </div>
-                </div>
-                <div class="item-info">
-                    <h3 id="modalItemName"></h3>
-                    <p id="modalItemDescription" class="item-description"></p>
-                    <div class="price-section">
-                        <span id="modalItemPrice" class="price"></span>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-
-    <div id="cart" class="cart" style="display: none;"></div>
-    <button id="cartButton" class="cart-button" style="display: none;"></button>
-
+    <div id="cart" class="cart">
+        </div>
+    <button id="cartButton" class="cart-button" onclick="toggleCart()" style="display: none;">
+        🛒 <span id="cartButtonCount">0</span>
+    </button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
