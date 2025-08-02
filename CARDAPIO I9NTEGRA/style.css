@@ -397,3 +397,131 @@ body {
   .price { align-self: flex-end; }
   .container { padding: 0.5rem; }
 }
+/* --- MELHORIAS DE VISUAL E RESPONSIVIDADE --- */
+
+/* Torna a barra de filtros mais elegante */
+.menu-controls {
+    background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Suporte para Safari */
+    padding: 1rem;
+    margin: 0 -1rem 2rem -1rem; /* Alinha com as bordas do container */
+    position: sticky;
+    top: 88px; /* Posição abaixo do header */
+    z-index: 990;
+    border-bottom: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 12px -2px hsla(var(--foreground), 0.05);
+}
+
+#searchInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.filter-container {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem; /* Espaço para a barra de rolagem */
+    /* Esconde a barra de rolagem visualmente */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.filter-container::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid transparent;
+    background-color: var(--secondary);
+    color: var(--muted-foreground);
+    border-radius: 999px; /* Botões em formato de "pílula" */
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-btn:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+}
+
+.filter-btn.active {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+/* Novo visual para o Modal de Visualização */
+.modal-content {
+    max-width: 400px; /* Um pouco mais estreito, ideal para celular */
+    overflow: hidden; /* Garante que a imagem não vaze das bordas arredondadas */
+    padding: 0;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    z-index: 10;
+    border: none;
+    font-size: 1.2rem;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.item-image-container {
+    width: 100%;
+    height: 250px; /* Altura da imagem */
+    background-color: var(--secondary);
+}
+
+.item-info {
+    padding: 1.5rem;
+}
+
+.item-info h3 { /* Nome do produto */
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.item-info .item-description { /* Descrição */
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: var(--muted-foreground);
+}
+
+.item-info .price { /* Preço */
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 99px; /* Formato de pílula */
+}
+
+
+/* --- AJUSTES FINAIS PARA CELULAR --- */
+@media (max-width: 768px) {
+    .menu-controls {
+        top: 67px; /* Ajusta a posição da barra de filtros no celular */
+    }
+}
