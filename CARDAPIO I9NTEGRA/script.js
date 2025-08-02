@@ -44,40 +44,29 @@ document.addEventListener('DOMContentLoaded', function() {
         allProducts = productsData;
     }
 
+   
     function renderCategories() {
         const desktopContainer = document.getElementById('filterContainerDesktop');
-        const mobileSelect = document.getElementById('categorySelect');
-        
-        if (!desktopContainer || !mobileSelect) return;
 
-        desktopContainer.innerHTML = ''; 
-        mobileSelect.innerHTML = '';
+        if (!desktopContainer) return;
 
-        const allButton = document.createElement('button');
-        allButton.className = 'filter-btn active';
-        allButton.textContent = 'Todos';
-        allButton.dataset.categoryId = 'all';
-        desktopContainer.appendChild(allButton);
+    desktopContainer.innerHTML = ''; 
 
-        const allOption = document.createElement('option');
-        allOption.value = 'all';
-        allOption.textContent = 'Todas as Categorias';
-        mobileSelect.appendChild(allOption);
+    const allButton = document.createElement('button');
+    allButton.className = 'filter-btn active';
+    allButton.textContent = 'Todos';
+    allButton.dataset.categoryId = 'all';
+    desktopContainer.appendChild(allButton);
 
-        allCategories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'filter-btn';
-            button.textContent = category.name;
-            button.dataset.categoryId = category.id;
-            desktopContainer.appendChild(button);
-
-            const option = document.createElement('option');
-            option.value = category.id;
-            option.textContent = category.name;
-            mobileSelect.appendChild(option);
-        });
+    allCategories.forEach(category => {
+        const button = document.createElement('button');
+        button.className = 'filter-btn';
+        button.textContent = category.name;
+        button.dataset.categoryId = category.id;
+        desktopContainer.appendChild(button);
+    });
     }
-
+    
     function renderMenu(searchTerm = '', categoryId = 'all') {
         const container = document.getElementById('menuContent');
         if (!container) return;
@@ -124,41 +113,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 5. OUVINTES DE EVENTOS (ATUALIZADO PARA AMBOS OS FILTROS) ---
+    // --- 5. FUNÇÕES DE EVENTOS ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
         const desktopContainer = document.getElementById('filterContainerDesktop');
-        const mobileSelect = document.getElementById('categorySelect');
+
+    // Estado atual da categoria selecionada
+        let currentCategoryId = 'all';
 
         if(searchInput) {
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value;
-                const categoryId = mobileSelect.value; // Pega o valor do select como fonte da verdade
-                renderMenu(searchTerm, categoryId);
+                renderMenu(searchTerm, currentCategoryId);
             });
         }
-        
+
         if(desktopContainer) {
             desktopContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
-                    const categoryId = e.target.dataset.categoryId;
-                    mobileSelect.value = categoryId; // Sincroniza o select
+                    // Atualiza o estado da categoria
+                    currentCategoryId = e.target.dataset.categoryId; 
+
+                    // Remove a classe 'active' do botão antigo e adiciona no novo
                     const currentActive = desktopContainer.querySelector('.active');
                     if (currentActive) currentActive.classList.remove('active');
                     e.target.classList.add('active');
-                    renderMenu(searchInput.value, categoryId);
+
+                    // Renderiza o menu com o filtro de categoria e busca atual
+                    renderMenu(searchInput.value, currentCategoryId);
                 }
-            });
-        }
-        
-        if(mobileSelect) {
-            mobileSelect.addEventListener('change', (e) => {
-                const categoryId = e.target.value;
-                const desktopButton = desktopContainer.querySelector(`[data-category-id="${categoryId}"]`);
-                const currentActive = desktopContainer.querySelector('.active');
-                if (currentActive) currentActive.classList.remove('active');
-                if (desktopButton) desktopButton.classList.add('active');
-                renderMenu(searchInput.value, categoryId);
             });
         }
     }
