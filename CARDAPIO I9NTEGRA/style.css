@@ -1,7 +1,7 @@
 /* Integra Bar & Restaurante Design System - "Visual Feast" Theme */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap');
 
-/* Reset e configurações base */
+/* Reset e Variáveis Globais */
 * {
   margin: 0;
   padding: 0;
@@ -10,29 +10,18 @@
 }
 
 :root {
-  /* Cores principais do Integra */
-  --background: 245 40% 97%; /* #f4f4f9 - Cinza suave neutro */
-  --foreground: 0 0% 10%; /* #1a1a1a - Grafite escuro sofisticado */
-  --card: 0 0% 100%; /* #ffffff - Branco puro para cartões */
-  --card-foreground: 0 0% 10%; /* #1a1a1a - Texto nos cartões */
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 11 98% 50%; /* #fb2404 - Vermelho vibrante da marca */
-  --primary-foreground: 0 0% 100%; /* Branco para contraste no vermelho */
-  --secondary: 0 0% 95%; /* Cinza claro para elementos secundários */
-  --secondary-foreground: 0 0% 10%;
-  --muted: 245 20% 90%; /* Cinza neutro para elementos desabilitados */
-  --muted-foreground: 0 0% 45%; /* Texto suave */
-  --accent: 145 75% 42%; /* #25D366 - Verde WhatsApp */
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 245 15% 85%; /* Bordas sutis */
-  --input: 245 15% 85%;
-  --ring: 11 98% 50%; /* Ring igual ao primary */
-  --radius: 0.75rem; /* Bordas mais arredondadas para elegância */
+  --background: 245 40% 97%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --primary: 11 98% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 95%;
+  --muted: 245 20% 90%;
+  --muted-foreground: 0 0% 45%;
+  --border: 245 15% 85%;
+  --radius: 0.75rem;
   --shadow-card: 0 4px 20px -2px hsl(var(--foreground) / 0.08);
-  --shadow-hover: 0 8px 30px -4px hsl(var(--foreground) / 0.12);
+  --shadow-hover: 0 10px 30px -5px hsl(var(--foreground) / 0.15);
   --shadow-modal: 0 20px 50px -12px hsl(var(--foreground) / 0.25);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -54,12 +43,15 @@ body {
     flex: 1;
 }
 
-/* Tipografia */
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
 .font-playfair {
   font-family: 'Playfair Display', serif;
 }
-
-/* --- CABEÇALHO --- */
+.header, .footer {
+  font-family: 'Roboto', sans-serif;
+}
 .header {
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
@@ -80,14 +72,25 @@ body {
   filter: brightness(0) invert(1);
 }
 
-/* --- CONTAINER PRINCIPAL --- */
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-left: 1rem;
+  color: hsl(var(--primary-foreground));
+}
 .container {
   padding: 1.5rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* --- SEÇÕES DO MENU --- */
+.menu-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
 .menu-section {
   background: hsl(var(--card));
   margin-bottom: 2rem;
@@ -96,6 +99,11 @@ body {
   box-shadow: var(--shadow-card);
   transition: var(--transition-smooth);
   border: 1px solid hsl(var(--border));
+}
+
+.menu-section:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
 }
 
 .menu-section h2 {
@@ -108,23 +116,31 @@ body {
   border-bottom: 2px solid hsl(var(--muted));
 }
 
-/* --- ITENS DO MENU --- */
+.menu-section p {
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
 .menu-item {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 1rem 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: var(--radius);
   transition: var(--transition-smooth);
   cursor: pointer;
   border: 1px solid transparent;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.menu-section .menu-item:last-child {
+  border-bottom: none;
 }
 
 .menu-item:hover {
   background: hsl(var(--muted) / 0.5);
-  border-color: hsl(var(--border));
+  border-color: hsl(var(--muted-foreground) / 0.2);
 }
 
 .item-details {
@@ -153,7 +169,7 @@ body {
   min-width: 100px;
 }
 
-/* --- RODAPÉ --- */
+
 .footer {
   background: hsl(var(--foreground));
   color: hsl(var(--background));
@@ -165,7 +181,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
 }
 
@@ -190,7 +206,7 @@ body {
   font-size: 0.85rem;
 }
 
-/* --- MODAL --- */
+/* --- MODAL DE DETALHES DO ITEM --- */
 .modal {
     display: none;
     position: fixed;
@@ -199,19 +215,21 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo sólido mais escuro */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 .modal.open {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 .modal-content {
     background-color: var(--card);
     padding: 0;
     border-radius: 12px;
-    width: 90%;
+    width: 100%;
     max-width: 400px;
     max-height: 90vh;
     overflow: hidden;
@@ -219,7 +237,7 @@ body {
     animation: modalSlideIn 0.3s ease-out;
 }
 @keyframes modalSlideIn {
-    from { opacity: 0; transform: translateY(-50px) scale(0.95); }
+    from { opacity: 0; transform: translateY(-30px) scale(0.97); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .close {
@@ -253,7 +271,7 @@ body {
 .item-image-container {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 220px; /* Altura ajustada para mobile */
     background: #f8f9fa;
     display: flex;
     align-items: center;
@@ -280,7 +298,7 @@ body {
 }
 .item-info h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin-bottom: 0.5rem;
 }
 .item-info .item-description {
@@ -298,12 +316,18 @@ body {
     font-size: 1.3rem;
     font-weight: 700;
 }
+.loading-placeholder {
+    text-align: center;
+    padding: 4rem;
+    font-size: 1.2rem;
+    color: var(--muted-foreground);
+}
 
 /* --- FILTROS E BUSCA --- */
 .menu-controls {
     background-color: hsl(var(--card));
     padding: 1rem;
-    margin: -1.5rem -1rem 1.5rem -1rem; /* Ajustado */
+    margin: -1.5rem -1rem 1.5rem -1rem;
     position: sticky;
     top: 60px; /* Altura do header mobile */
     z-index: 990;
@@ -319,17 +343,7 @@ body {
     margin-bottom: 1rem;
     background-color: hsl(var(--secondary));
 }
-.filter-container {
-    display: flex;
-    gap: 0.5rem;
-    overflow-x: auto;
-    padding-bottom: 0.75rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-.filter-container::-webkit-scrollbar {
-    display: none;
-}
+
 .filter-btn {
     padding: 0.6rem 1.4rem;
     border: 1px solid hsl(var(--border));
@@ -353,38 +367,33 @@ body {
     box-shadow: 0 2px 6px -1px hsl(var(--primary) / 0.5);
     transform: translateY(-2px);
 }
-
-.loading-placeholder {
-    text-align: center;
-    padding: 4rem;
-    font-size: 1.2rem;
-    color: var(--muted-foreground);
+.filter-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 /* --- MELHORIAS VISUAIS PARA MOBILE --- */
-
-/* Esconde o filtro de botões no celular */
-.filter-container {
-    display: none;
+.filter-container-mobile label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    margin-bottom: 0.25rem;
 }
-
-/* Mostra e estiliza o filtro de dropdown (select) no celular */
-.filter-container-mobile {
-    display: block; /* Garante que seja visível */
-    position: relative;
-}
-
-/* Estiliza o select para parecer um botão bonito */
 #categorySelect {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem;
     font-size: 1rem;
     font-weight: 500;
     color: var(--foreground);
     background-color: var(--secondary);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    appearance: none; /* Remove o visual padrão do sistema */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
@@ -394,13 +403,21 @@ body {
     cursor: pointer;
 }
 
+/* Regras de visibilidade para os filtros (Mobile-first) */
+.filter-container {
+    display: none; /* Escondido por padrão */
+}
+.filter-container-mobile {
+    display: block; /* Visível por padrão */
+}
+
 /* Regras para telas maiores (Desktop) */
 @media (min-width: 769px) {
     .header {
         padding: 1.5rem 1rem;
     }
     .menu-controls {
-        top: 88px; /* Altura do header em desktop */
+        top: 88px;
     }
     /* No desktop, esconde o dropdown e mostra os botões */
     .filter-container-mobile {
@@ -408,5 +425,15 @@ body {
     }
     .filter-container {
         display: flex;
+        overflow-x: auto;
+        padding-bottom: 0.75rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .filter-container::-webkit-scrollbar {
+        display: none;
+    }
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
     }
 }

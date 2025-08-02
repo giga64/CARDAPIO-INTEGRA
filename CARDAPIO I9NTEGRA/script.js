@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- 0. IMPORTAÇÕES ---
     
     // --- 1. CONFIGURAÇÃO DO SUPABASE ---
     const SUPABASE_URL = 'https://llpyzevrzgfqwxvbguli.supabase.co';
@@ -50,11 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!desktopContainer || !mobileSelect) return;
 
-        // Limpa ambos os containers
+        // Limpa os conteúdos anteriores
         desktopContainer.innerHTML = ''; 
         mobileSelect.innerHTML = '';
 
-        // Cria a opção "Todos" para ambos
+        allCategories = allCategories.filter(category => category.name && category.id); // Filtra categorias sem nome ou id
         const allButton = document.createElement('button');
         allButton.className = 'filter-btn active';
         allButton.textContent = 'Todos';
@@ -66,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
         allOption.textContent = 'Todas as Categorias';
         mobileSelect.appendChild(allOption);
 
-        // Popula ambos com as categorias do Supabase
+        if (allCategories.length === 0) {
+            const noCategoriesMessage = document.createElement('p');
+            noCategoriesMessage.textContent = 'Nenhuma categoria encontrada.';
         allCategories.forEach(category => {
             const button = document.createElement('button');
             button.className = 'filter-btn';
@@ -136,8 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(searchInput) {
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value;
-                const activeDesktopFilter = desktopContainer.querySelector('.active');
-                const categoryId = activeDesktopFilter ? activeDesktopFilter.dataset.categoryId : mobileSelect.value;
+                const categoryId = mobileSelect.value; // Pega o valor do select como fonte da verdade
                 renderMenu(searchTerm, categoryId);
             });
         }
@@ -145,11 +147,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if(desktopContainer) {
             desktopContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
+                    const categoryId = e.target.dataset.categoryId;
+                    mobileSelect.value = categoryId; // Sincroniza o select
                     const currentActive = desktopContainer.querySelector('.active');
                     if (currentActive) currentActive.classList.remove('active');
                     e.target.classList.add('active');
-                    mobileSelect.value = e.target.dataset.categoryId; // Sincroniza com o select
-                    renderMenu(searchInput.value, e.target.dataset.categoryId);
+                    renderMenu(searchInput.value, categoryId);
                 }
             });
         }
@@ -195,39 +198,25 @@ document.addEventListener('DOMContentLoaded', function() {
             if(placeholder) placeholder.style.display = 'none';
         } else {
             modalImage.style.display = 'none';
-            if(placeholder) placeholder.style.display = 'flex';
+            if(placeholder) placeholder.style.display = 'block';
         }
         
-        modal.style.display = 'block';
+        modal.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
 
     window.closeModal = function() {
         const modal = document.getElementById('itemModal');
-        modal.style.display = 'none';
+        modal.classList.remove('open');
         document.body.style.overflow = 'auto';
     }
-
-    // --- FUNÇÕES ADICIONAIS ---
+    // --- 7. BOTÃO DE VOLTAR AO TOPO ---
+    // Se desejar implementar um botão de voltar ao topo, descomente a função abaixo e
     function setupBackToTopButton() {
-        const backToTopBtn = document.createElement('button');
-        backToTopBtn.innerHTML = '↑';
-        backToTopBtn.className = 'back-to-top'; // Precisa de estilo no CSS se quiser que apareça
-        document.body.appendChild(backToTopBtn);
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
+        // Implementação do botão de voltar ao topo, se desejar
     }
 
-    // --- INICIA A APLICAÇÃO ---
+      // --- INICIA A APLICAÇÃO ---
     initializeApp();
-});
+}
+}); // Fim do document.addEventListener

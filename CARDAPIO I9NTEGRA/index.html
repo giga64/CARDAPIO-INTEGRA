@@ -17,38 +17,34 @@
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Buscar no cardápio...">
             </div>
-            <div class="filter-container" id="filterContainerDesktop">
-                </div>
+            <div class="filter-container" id="filterContainerDesktop"></div>
             <div class="filter-container-mobile" id="filterContainerMobile">
+                <label for="categorySelect">Filtrar por categoria:</label>
                 <select id="categorySelect"></select>
             </div>
         </div>
 
         <div id="menuContent">
-            <div class="loading-placeholder">
-                <p>Carregando cardápio...</p>
-            </div>
+            <div class="loading-placeholder"><p>Carregando cardápio...</p></div>
         </div>
     </div>
 
     <footer class="footer">
         <div class="footer-content">
-             <div class="footer-section">
-                 <h3>Integra Unidade Candelária</h3>
-                 <p>Av. Integração - 200A, Candelária - Natal/RN</p>
-             </div>
-             <div class="footer-section">
-                 <h3>Integra Unidade Cidade Verde</h3>
-                 <p>Rua Ingazeira - 1720, Nova Parnamirim/RN</p>
-             </div>
-             <div class="footer-section">
-                 <h3>Contato</h3>
-                 <p><strong>Telefone:</strong> (84) 99933-9959</p>
-             </div>
+            <div class="footer-section">
+                <h3>Integra Unidade Candelária</h3>
+                <p>Av. Integração - 200A</p><p>Candelária - Natal/RN</p>
+            </div>
+            <div class="footer-section">
+                <h3>Integra Unidade Cidade Verde</h3>
+                <p>Rua Ingazeira - 1720</p><p>Nova Parnamirim/RN</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><strong>Telefone:</strong> (84) 99933-9959</p>
+            </div>
         </div>
-        <div class="footer-divider">
-            © 2024 Integra Bar & Restaurante. Todos os direitos reservados.
-        </div>
+        <div class="footer-divider">© 2024 Integra Bar & Restaurante. Todos os direitos reservados.</div>
     </footer>
 
     <div id="itemModal" class="modal">
@@ -57,17 +53,12 @@
             <div class="modal-body">
                 <div class="item-image-container">
                     <img id="modalItemImage" src="" alt="Foto do item" class="item-image" style="display: none;">
-                    <div class="image-placeholder">
-                        <span>📸</span>
-                        <p>Foto será adicionada em breve</p>
-                    </div>
+                    <div class="image-placeholder"><span>📸</span><p>Foto em breve</p></div>
                 </div>
                 <div class="item-info">
                     <h3 id="modalItemName"></h3>
                     <p id="modalItemDescription" class="item-description"></p>
-                    <div class="price-section">
-                        <span id="modalItemPrice" class="price"></span>
-                    </div>
+                    <div class="price-section"><span id="modalItemPrice" class="price"></span></div>
                 </div>
             </div>
         </div>
