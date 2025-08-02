@@ -400,7 +400,7 @@ body {
 /* --- MELHORIAS DE VISUAL E RESPONSIVIDADE --- */
 
 /* Torna a barra de filtros mais elegante */
-.menu-controls {
+  .menu-controls {
     background: hsla(0, 0%, 100%, 0.8);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px); /* Suporte para Safari */
@@ -413,7 +413,7 @@ body {
     box-shadow: 0 4px 12px -2px hsla(var(--foreground), 0.05);
 }
 
-#searchInput {
+  #searchInput {
     width: 100%;
     padding: 0.75rem 1rem;
     font-size: 1rem;
@@ -422,7 +422,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.filter-container {
+  .filter-container {
     display: flex;
     gap: 0.5rem;
     overflow-x: auto;
@@ -431,11 +431,11 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-.filter-container::-webkit-scrollbar {
+  .filter-container::-webkit-scrollbar {
     display: none;
 }
 
-.filter-btn {
+  .filter-btn {
     padding: 0.5rem 1.25rem;
     border: 1px solid transparent;
     background-color: var(--secondary);
@@ -448,12 +448,12 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
-.filter-btn:hover {
+  .filter-btn:hover {
     background-color: var(--muted);
     color: var(--foreground);
 }
 
-.filter-btn.active {
+  .filter-btn.active {
     background-color: var(--primary);
     color: var(--primary-foreground);
     border-color: var(--primary);
@@ -461,13 +461,13 @@ body {
 }
 
 /* Novo visual para o Modal de Visualização */
-.modal-content {
+  .modal-content {
     max-width: 400px; /* Um pouco mais estreito, ideal para celular */
     overflow: hidden; /* Garante que a imagem não vaze das bordas arredondadas */
     padding: 0;
 }
 
-.close {
+  .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -482,34 +482,34 @@ body {
     font-size: 1.2rem;
 }
 
-.modal-body {
+  .modal-body {
     padding: 0;
 }
 
-.item-image-container {
+  .item-image-container {
     width: 100%;
     height: 250px; /* Altura da imagem */
     background-color: var(--secondary);
 }
 
-.item-info {
+  .item-info {
     padding: 1.5rem;
 }
 
-.item-info h3 { /* Nome do produto */
+  .item-info h3 { /* Nome do produto */
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
-.item-info .item-description { /* Descrição */
+  .item-info .item-description { /* Descrição */
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
     color: var(--muted-foreground);
 }
 
-.item-info .price { /* Preço */
+  .item-info .price { /* Preço */
     font-size: 1.5rem;
     font-weight: 700;
     padding: 0.5rem 1.5rem;
@@ -521,7 +521,7 @@ body {
 
 /* --- AJUSTES FINAIS PARA CELULAR --- */
 @media (max-width: 768px) {
-    .menu-controls {
-        top: 67px; /* Ajusta a posição da barra de filtros no celular */
+  .menu-controls {
+    top: 67px; /* Ajusta a posição da barra de filtros no celular */
     }
 }
