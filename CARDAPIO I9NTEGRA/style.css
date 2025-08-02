@@ -143,7 +143,7 @@ body {
 .menu-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Alinha no topo */
+  align-items: center; /* MODIFICADO: Centraliza verticalmente */
   gap: 1rem;
   padding: 1rem 0.5rem;
   border-bottom: 1px solid var(--border);
@@ -196,7 +196,6 @@ body {
   font-size: 1rem;
   color: var(--foreground);
   white-space: nowrap;
-  padding-left: 1rem; /* Adiciona um espaço para não colar no texto */
 }
 
 /* --- Rodapé --- */
@@ -337,6 +336,26 @@ body {
     padding: 4rem 1rem;
     font-size: 1.1rem;
     color: var(--muted-foreground);
+}
+
+/* --- Estilos para o indicador de ação do item --- */
+.price-and-action {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* Espaço entre o preço e o ícone */
+    color: var(--primary); /* Cor do ícone será a cor primária */
+}
+
+.action-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Animação sutil no hover/tap para mover o ícone */
+.menu-item:hover .action-indicator {
+    transform: translateX(4px);
 }
 
 /* --- Ajustes para telas maiores (Desktop) --- */

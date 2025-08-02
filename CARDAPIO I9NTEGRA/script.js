@@ -94,9 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span class="item-name">${product.name}</span>
                                 ${descriptionHTML}
                             </div>
+                            <div class="price-and-action">
                             <span class="price">${priceText}</span>
+                            <span class="action-indicator">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </span>
                         </div>
-                    `;
+                    </div>
+                `;
                 });
 
                 section.innerHTML = `<h2>${category.name}</h2>${productsHTML}`;
