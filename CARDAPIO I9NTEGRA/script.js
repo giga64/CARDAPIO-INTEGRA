@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         renderMenu();
         setupEventListeners();
         initializeModal();
-        setupBackToTopButton();
     }
 
     // --- 4. FUNÇÕES DE BUSCA E RENDERIZAÇÃO ---
@@ -45,36 +44,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderCategories() {
-        const desktopContainer = document.getElementById('filterContainerDesktop');
-        const mobileSelect = document.getElementById('categorySelect');
-        
-        if (!desktopContainer || !mobileSelect) return;
-
-        desktopContainer.innerHTML = ''; 
-        mobileSelect.innerHTML = '';
+        const container = document.getElementById('filterContainer');
+        if (!container) return;
+        container.innerHTML = ''; 
 
         const allButton = document.createElement('button');
         allButton.className = 'filter-btn active';
         allButton.textContent = 'Todos';
         allButton.dataset.categoryId = 'all';
-        desktopContainer.appendChild(allButton);
-
-        const allOption = document.createElement('option');
-        allOption.value = 'all';
-        allOption.textContent = 'Todas as Categorias';
-        mobileSelect.appendChild(allOption);
+        container.appendChild(allButton);
 
         allCategories.forEach(category => {
             const button = document.createElement('button');
             button.className = 'filter-btn';
             button.textContent = category.name;
             button.dataset.categoryId = category.id;
-            desktopContainer.appendChild(button);
-
-            const option = document.createElement('option');
-            option.value = category.id;
-            option.textContent = category.name;
-            mobileSelect.appendChild(option);
+            container.appendChild(button);
         });
     }
 
@@ -124,41 +109,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 5. OUVINTES DE EVENTOS (ATUALIZADO PARA AMBOS OS FILTROS) ---
+    // --- 5. OUVINTES DE EVENTOS ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
-        const desktopContainer = document.getElementById('filterContainerDesktop');
-        const mobileSelect = document.getElementById('categorySelect');
+        const filterContainer = document.getElementById('filterContainer');
 
-        if(searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value;
-                const categoryId = mobileSelect.value; // Pega o valor do select como fonte da verdade
-                renderMenu(searchTerm, categoryId);
+        if(searchInput && filterContainer) {
+            searchInput.addEventListener('input', () => {
+                const activeFilter = filterContainer.querySelector('.active');
+                const categoryId = activeFilter ? activeFilter.dataset.categoryId : 'all';
+                renderMenu(searchInput.value, categoryId);
             });
-        }
-        
-        if(desktopContainer) {
-            desktopContainer.addEventListener('click', (e) => {
+            
+            filterContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
-                    const categoryId = e.target.dataset.categoryId;
-                    mobileSelect.value = categoryId; // Sincroniza o select
-                    const currentActive = desktopContainer.querySelector('.active');
+                    const currentActive = filterContainer.querySelector('.active');
                     if (currentActive) currentActive.classList.remove('active');
                     e.target.classList.add('active');
-                    renderMenu(searchInput.value, categoryId);
+                    renderMenu(searchInput.value, e.target.dataset.categoryId);
                 }
-            });
-        }
-        
-        if(mobileSelect) {
-            mobileSelect.addEventListener('change', (e) => {
-                const categoryId = e.target.value;
-                const desktopButton = desktopContainer.querySelector(`[data-category-id="${categoryId}"]`);
-                const currentActive = desktopContainer.querySelector('.active');
-                if (currentActive) currentActive.classList.remove('active');
-                if (desktopButton) desktopButton.classList.add('active');
-                renderMenu(searchInput.value, categoryId);
             });
         }
     }
@@ -171,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const closeBtn = modal.querySelector('.close');
             if(closeBtn) closeBtn.addEventListener('click', closeModal);
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.style.display === 'block') closeModal();
+                if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
             });
         }
     }
@@ -204,11 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('open');
         document.body.style.overflow = 'auto';
     }
-
-    function setupBackToTopButton() {
-        // Implementação do botão de voltar ao topo, se desejar
-    }
-
+    
     // --- INICIA A APLICAÇÃO ---
     initializeApp();
 });
