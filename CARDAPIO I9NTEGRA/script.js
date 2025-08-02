@@ -1,28 +1,27 @@
  document.addEventListener('DOMContentLoaded', function() {
     
-    // --- 1. CONFIGURAÇÃO DO SUPABASE ---
-    const SUPABASE_URL = 'https://llpyzevrzgfqwxvbguli.supabase.co'; // <-- INSIRA SUA URL
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxscHl6ZXZyemdmcXd4dmJndWxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MDk5MTIsImV4cCI6MjA2OTQ4NTkxMn0.RYHbYNr-7Ksb-WmuOTOrQETB1tx_IUP1FC_JBuzdn60'; // <-- INSIRA SUA CHAVE
+    // --- 1. CONFIGURAÇÃO DO SUPABASE (Mantida) ---
+    const SUPABASE_URL = 'https://llpyzevrzgfqwxvbguli.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxscHl6ZXZyemdmcXd4dmJndWxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MDk5MTIsImV4cCI6MjA2OTQ4NTkxMn0.RYHbYNr-7Ksb-WmuOTOrQETB1tx_IUP1FC_JBuzdn60';
 
     const { createClient } = supabase;
     const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // --- 2. ESTADO DA APLICAÇÃO ---
+    // --- 2. ESTADO DA APLICAÇÃO (Simplificado) ---
     let allProducts = [];
     let allCategories = [];
-    let cart = [];
-    let currentItem = null;
+    // As variáveis 'cart' e 'currentItem' não são mais necessárias no escopo global para o carrinho.
 
-    // --- 3. FUNÇÃO PRINCIPAL DE INICIALIZAÇÃO ---
+    // --- 3. FUNÇÃO PRINCIPAL DE INICIALIZAÇÃO (Simplificada) ---
     async function initializeApp() {
         await fetchData();
         renderCategories();
         renderMenu();
         setupEventListeners();
-        initializeModalAndCart();
+        initializeModal(); // Apenas o modal agora
     }
 
-    // --- 4. FUNÇÕES DE BUSCA E RENDERIZAÇÃO ---
+    // --- 4. FUNÇÕES DE BUSCA E RENDERIZAÇÃO (Mantidas) ---
     async function fetchData() {
         const menuContainer = document.getElementById('menuContent');
         if(menuContainer) menuContainer.innerHTML = '<div class="loading-placeholder"><p>Carregando cardápio...</p></div>';
@@ -102,7 +101,6 @@
             }
         });
         
-        // Re-aplica eventos de clique e animação
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', () => {
                 const productId = item.dataset.productId;
@@ -112,10 +110,10 @@
                 }
             });
         });
-        setupOriginalEventListeners(); // Reativa as animações
+        setupOriginalEventListeners();
     }
 
-    // --- 5. OUVINTES DE EVENTOS ---
+    // --- 5. OUVINTES DE EVENTOS (Mantidos) ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
         const filterContainer = document.getElementById('filterContainer');
@@ -138,30 +136,54 @@
         }
     }
 
-    // --- CÓDIGO DO MODAL, CARRINHO E SUAS FUNÇÕES ORIGINAIS ---
+    // --- 6. CÓDIGO DO MODAL (Simplificado) ---
 
     function openItemModal(productData) {
         const modal = document.getElementById('itemModal');
         
-        currentItem = {
-            id: productData.id,
-            name: productData.name,
-            description: productData.description,
-            price: productData.price_details || `R$ ${productData.price.toFixed(2).replace('.', ',')}`,
-            priceValue: productData.price
-        };
+        // Preenche o modal com os dados do produto
+        modal.querySelector('#modalItemName').textContent = productData.name;
+        modal.querySelector('#modalItemDescription').textContent = productData.description || '';
+        modal.querySelector('#modalItemPrice').textContent = productData.price_details || `R$ ${productData.price.toFixed(2).replace('.', ',')}`;
         
-        modal.querySelector('#modalItemName').textContent = currentItem.name;
-        modal.querySelector('#modalItemDescription').textContent = currentItem.description || '';
-        modal.querySelector('#modalItemPrice').textContent = currentItem.price;
-        modal.querySelector('#itemQuantity').value = 1;
-        modal.querySelector('#itemObservations').value = '';
+        // Lógica da imagem (placeholder)
+        const modalImage = modal.querySelector('#modalItemImage');
+        const placeholder = modal.querySelector('.image-placeholder');
+        
+        // Se houver uma URL de imagem no Supabase, usa-a. Senão, mostra o placeholder.
+        if (productData.image_url) {
+            modalImage.src = productData.image_url;
+            modalImage.style.display = 'block';
+            placeholder.style.display = 'none';
+        } else {
+            modalImage.style.display = 'none';
+            placeholder.style.display = 'block';
+        }
         
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     }
 
-    // A partir daqui, é o seu código original do repositório, garantindo que nada se perca.
+    window.closeModal = function() {
+        const modal = document.getElementById('itemModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function initializeModal() {
+        const modal = document.getElementById('itemModal');
+        const closeBtn = document.querySelector('.close');
+        
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    }
+
+    // --- 7. CÓDIGO ORIGINAL DE ANIMAÇÕES (Mantido) ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -185,169 +207,14 @@
             item.addEventListener('mouseenter', function() { this.style.transform = 'translateX(8px) scale(1.02)'; });
             item.addEventListener('mouseleave', function() { this.style.transform = 'translateX(0) scale(1)'; });
         });
-    }
-
-    function initializeModalAndCart() {
-        const modal = document.getElementById('itemModal');
-        const closeBtn = document.querySelector('.close');
         
-        if (closeBtn) closeBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeModal();
-        });
-        updateCartDisplay();
+        setupBackToTopButton(); // Movido para cá para garantir que seja chamado
     }
-
-    window.closeModal = function() {
-        const modal = document.getElementById('itemModal');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        currentItem = null;
-    }
-
-    window.changeQuantity = function(delta) {
-        const quantityInput = document.getElementById('itemQuantity');
-        let newQuantity = parseInt(quantityInput.value) + delta;
-        if (newQuantity < 1) newQuantity = 1;
-        if (newQuantity > 99) newQuantity = 99;
-        quantityInput.value = newQuantity;
-    }
-
-    window.addToCart = function() {
-        if (!currentItem) return;
-        const quantity = parseInt(document.getElementById('itemQuantity').value);
-        const observations = document.getElementById('itemObservations').value.trim();
-        const existingItemIndex = cart.findIndex(item => item.id === currentItem.id && item.observations === observations);
-        
-        if (existingItemIndex !== -1) {
-            cart[existingItemIndex].quantity += quantity;
-        } else {
-            cart.push({ ...currentItem, quantity: quantity, observations: observations });
-        }
-        updateCartDisplay();
-        closeModal();
-        showNotification('Item adicionado ao carrinho! 🛒');
-    }
-
-    window.removeFromCart = function(index) {
-        cart.splice(index, 1);
-        updateCartDisplay();
-        showNotification('Item removido do carrinho!');
-    }
-
-    window.updateCartQuantity = function(index, delta) {
-        if(!cart[index]) return;
-        const newQuantity = cart[index].quantity + delta;
-        if (newQuantity <= 0) {
-            removeFromCart(index);
-        } else {
-            cart[index].quantity = newQuantity;
-            updateCartDisplay();
-        }
-    }
-
-    function updateCartDisplay() {
-        const cartItems = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cartCount');
-        const cartButtonCount = document.getElementById('cartButtonCount');
-        const cartTotal = document.getElementById('cartTotal');
-        
-        cartItems.innerHTML = '';
-        
-        cart.forEach((item, index) => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'cart-item';
-            const observationsHtml = item.observations ? `<div class="cart-item-observations">Obs: ${item.observations}</div>` : '';
-            
-            itemElement.innerHTML = `
-                <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">${item.price}</div>
-                    ${observationsHtml}
-                </div>
-                <div class="cart-item-quantity">
-                    <button onclick="updateCartQuantity(${index}, -1)">-</button>
-                    <span>${item.quantity}</span>
-                    <button onclick="updateCartQuantity(${index}, 1)">+</button>
-                </div>
-                <button class="remove-item" onclick="removeFromCart(${index})">×</button>
-            `;
-            cartItems.appendChild(itemElement);
-        });
-        
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const totalValue = cart.reduce((sum, item) => sum + (item.priceValue * item.quantity), 0);
-        
-        cartCount.textContent = totalItems;
-        cartButtonCount.textContent = totalItems;
-        cartTotal.textContent = totalValue.toFixed(2).replace('.', ',');
-        
-        const cartButton = document.getElementById('cartButton');
-        if (totalItems > 0) {
-            cartButton.style.display = 'flex';
-        } else {
-            cartButton.style.display = 'none';
-        }
-    }
-
-    window.toggleCart = function() {
-        const cartEl = document.getElementById('cart');
-        cartEl.classList.toggle('open');
-    }
-
-    window.sendToWhatsApp = function() {
-        if (cart.length === 0) {
-            showNotification('Carrinho vazio! Adicione itens primeiro.');
-            return;
-        }
-        let message = '🍽️ *PEDIDO INTEGRA PETISCARIA* 🍽️\n\n*Itens do pedido:*\n\n';
-        cart.forEach((item, index) => {
-            message += `${index + 1}. *${item.name}*\n   ${item.price} x ${item.quantity} un.\n`;
-            if (item.observations) {
-                message += `   _Obs: ${item.observations}_\n`;
-            }
-            message += '\n';
-        });
-        
-        const totalValue = cart.reduce((sum, item) => sum + (item.priceValue * item.quantity), 0);
-        message += `*Total: R$ ${totalValue.toFixed(2).replace('.', ',')}*\n\nObrigado! 🍽️`;
-        
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/5584999339959?text=${encodedMessage}`;
-        window.open(whatsappUrl, '_blank');
-        
-        cart = [];
-        updateCartDisplay();
-        toggleCart();
-        showNotification('Pedido enviado para o WhatsApp! 📱');
-    }
-
-    function showNotification(message) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed; top: 20px; right: 20px; background: var(--primary); color: var(--primary-foreground);
-            padding: 1rem 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-card); z-index: 10000;
-            animation: slideInRight 0.3s ease-out; font-weight: 500;
-        `;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        setTimeout(() => {
-            notification.style.animation = 'slideOutRight 0.3s ease-out forwards';
-            setTimeout(() => { notification.remove(); }, 300);
-        }, 3000);
-    }
-
-    const notificationStyle = document.createElement('style');
-    notificationStyle.textContent = `
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideOutRight { to { opacity: 0; transform: translateX(100%); } }
-    `;
-    document.head.appendChild(notificationStyle);
-
+    
     function setupBackToTopButton() {
+        // Verifica se o botão já existe para não criar múltiplos
+        if (document.querySelector('.back-to-top')) return;
+        
         const backToTopBtn = document.createElement('button');
         backToTopBtn.innerHTML = '↑';
         backToTopBtn.className = 'back-to-top';
@@ -365,7 +232,7 @@
             }
         });
     }
-
+    
     // --- INICIA A APLICAÇÃO ---
     initializeApp();
 });
