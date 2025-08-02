@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- 0. IMPORTAÇÕES ---
     
     // --- 1. CONFIGURAÇÃO DO SUPABASE ---
     const SUPABASE_URL = 'https://llpyzevrzgfqwxvbguli.supabase.co';
@@ -51,11 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!desktopContainer || !mobileSelect) return;
 
-        // Limpa os conteúdos anteriores
         desktopContainer.innerHTML = ''; 
         mobileSelect.innerHTML = '';
 
-        allCategories = allCategories.filter(category => category.name && category.id); // Filtra categorias sem nome ou id
         const allButton = document.createElement('button');
         allButton.className = 'filter-btn active';
         allButton.textContent = 'Todos';
@@ -67,9 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         allOption.textContent = 'Todas as Categorias';
         mobileSelect.appendChild(allOption);
 
-        if (allCategories.length === 0) {
-            const noCategoriesMessage = document.createElement('p');
-            noCategoriesMessage.textContent = 'Nenhuma categoria encontrada.';
         allCategories.forEach(category => {
             const button = document.createElement('button');
             button.className = 'filter-btn';
@@ -210,13 +204,11 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.remove('open');
         document.body.style.overflow = 'auto';
     }
-    // --- 7. BOTÃO DE VOLTAR AO TOPO ---
-    // Se desejar implementar um botão de voltar ao topo, descomente a função abaixo e
+
     function setupBackToTopButton() {
         // Implementação do botão de voltar ao topo, se desejar
     }
 
-      // --- INICIA A APLICAÇÃO ---
+    // --- INICIA A APLICAÇÃO ---
     initializeApp();
-}
-}); // Fim do document.addEventListener
+});

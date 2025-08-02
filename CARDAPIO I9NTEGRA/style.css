@@ -21,7 +21,6 @@
   --border: 245 15% 85%;
   --radius: 0.75rem;
   --shadow-card: 0 4px 20px -2px hsl(var(--foreground) / 0.08);
-  --shadow-hover: 0 10px 30px -5px hsl(var(--foreground) / 0.15);
   --shadow-modal: 0 20px 50px -12px hsl(var(--foreground) / 0.25);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -43,15 +42,10 @@ body {
     flex: 1;
 }
 
-.font-roboto {
-  font-family: 'Roboto', sans-serif;
-}
 .font-playfair {
   font-family: 'Playfair Display', serif;
 }
-.header, .footer {
-  font-family: 'Roboto', sans-serif;
-}
+
 .header {
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
@@ -72,25 +66,12 @@ body {
   filter: brightness(0) invert(1);
 }
 
-.header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-left: 1rem;
-  color: hsl(var(--primary-foreground));
-}
 .container {
   padding: 1.5rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.menu-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
 .menu-section {
   background: hsl(var(--card));
   margin-bottom: 2rem;
@@ -116,11 +97,6 @@ body {
   border-bottom: 2px solid hsl(var(--muted));
 }
 
-.menu-section p {
-  color: hsl(var(--muted-foreground));
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
 .menu-item {
   display: flex;
   justify-content: space-between;
@@ -140,7 +116,6 @@ body {
 
 .menu-item:hover {
   background: hsl(var(--muted) / 0.5);
-  border-color: hsl(var(--muted-foreground) / 0.2);
 }
 
 .item-details {
@@ -168,7 +143,6 @@ body {
   text-align: right;
   min-width: 100px;
 }
-
 
 .footer {
   background: hsl(var(--foreground));
@@ -206,7 +180,6 @@ body {
   font-size: 0.85rem;
 }
 
-/* --- MODAL DE DETALHES DO ITEM --- */
 .modal {
     display: none;
     position: fixed;
@@ -343,7 +316,6 @@ body {
     margin-bottom: 1rem;
     background-color: hsl(var(--secondary));
 }
-
 .filter-btn {
     padding: 0.6rem 1.4rem;
     border: 1px solid hsl(var(--border));
@@ -366,14 +338,6 @@ body {
     border-color: hsl(var(--primary));
     box-shadow: 0 2px 6px -1px hsl(var(--primary) / 0.5);
     transform: translateY(-2px);
-}
-.filter-container {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 0.75rem;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
 }
 
 /* --- MELHORIAS VISUAIS PARA MOBILE --- */
