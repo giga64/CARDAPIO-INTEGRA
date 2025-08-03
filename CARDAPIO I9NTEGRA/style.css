@@ -84,7 +84,7 @@ body {
 
 .filter-container {
     display: flex;
-    gap: 0.5rem;
+    gap: 1.0rem;
     overflow-x: auto; /* Permite rolar os botões */
     padding-bottom: 0.5rem;
     -ms-overflow-style: none;
