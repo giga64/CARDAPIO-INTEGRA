@@ -67,7 +67,7 @@ body {
     padding: 1rem;
     margin: 0 -1rem; /* Ocupa a largura toda do container no mobile */
     position: sticky;
-    top: 60px; /* Altura do header mobile */
+    top: 40px; /* Altura do header mobile */
     z-index: 990;
     border-bottom: 1px solid var(--border);
 }
