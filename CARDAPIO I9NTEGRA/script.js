@@ -50,23 +50,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         desktopContainer.innerHTML = ''; 
 
+        // 1. Encontra e cria o botão Happy Hour primeiro
+        const happyHourCategory = allCategories.find(c => c.name.toLowerCase() === 'happy hour' && c.parent_id === null);
+        if (happyHourCategory) {
+            const button = document.createElement('button');
+            button.className = 'filter-btn happy-hour-special'; // Já inicia com a classe especial
+            button.textContent = happyHourCategory.name;
+            button.dataset.categoryId = happyHourCategory.id;
+            desktopContainer.appendChild(button);
+        }
+
+        // 2. Cria o botão "Todos" e o define como ativo
         const allButton = document.createElement('button');
-        allButton.className = 'filter-btn active';
+        allButton.className = 'filter-btn active'; // "Todos" começa como ativo
         allButton.textContent = 'Todos';
         allButton.dataset.categoryId = 'all';
         desktopContainer.appendChild(allButton);
 
+        // 3. Cria os botões restantes, ignorando o Happy Hour que já foi adicionado
         allCategories.forEach(category => {
-            if (category.parent_id === null) {
+            if (category.parent_id === null && category.name.toLowerCase() !== 'happy hour') {
                 const button = document.createElement('button');
                 button.className = 'filter-btn';
                 button.textContent = category.name;
                 button.dataset.categoryId = category.id;
-    
-                if (category.name.toLowerCase() === 'happy hour') {
-                    button.classList.add('happy-hour-special');
-                }
-    
                 desktopContainer.appendChild(button);
             }
         });
@@ -94,19 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let categoriesToRender;
 
         if (categoryId === 'all') {
-            // Pega todas as categorias pai para renderizar
             let parentCategories = allCategories.filter(c => c.parent_id === null);
             
-            // Lógica de reordenação: Só roda quando "Todos" está selecionado
-            const happyHourCategory = parentCategories.find(c => c.name.toLowerCase() === 'happy hour');
-            if (happyHourCategory) {
-                parentCategories = parentCategories.filter(c => c.id !== happyHourCategory.id);
-                parentCategories.push(happyHourCategory);
+            const happyHourCat = parentCategories.find(c => c.name.toLowerCase() === 'happy hour');
+            if (happyHourCat) {
+                parentCategories = parentCategories.filter(c => c.id !== happyHourCat.id);
+                parentCategories.push(happyHourCat);
             }
             categoriesToRender = parentCategories;
 
         } else {
-            // Se um filtro específico for clicado, renderiza apenas essa categoria
             categoriesToRender = allCategories.filter(c => c.id == categoryId);
         }
 
