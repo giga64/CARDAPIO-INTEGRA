@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function initializeApp() {
         await fetchData();
         renderCategories();
-        renderMenu();
+        renderMenu(); // Renderiza o menu inicial com "Todos"
         setupEventListeners();
         initializeModal();
         setupBackToTopButton();
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         allProducts = productsData;
     }
 
-    
     function renderCategories() {
         const desktopContainer = document.getElementById('filterContainerDesktop');
         if (!desktopContainer) return;
@@ -58,14 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
         desktopContainer.appendChild(allButton);
 
         allCategories.forEach(category => {
-            // Apenas botões para categorias "pai"
             if (category.parent_id === null) {
                 const button = document.createElement('button');
                 button.className = 'filter-btn';
                 button.textContent = category.name;
                 button.dataset.categoryId = category.id;
     
-                // Adiciona a classe especial para o botão de Happy Hour
                 if (category.name.toLowerCase() === 'happy hour') {
                     button.classList.add('happy-hour-special');
                 }
@@ -94,30 +91,35 @@ document.addEventListener('DOMContentLoaded', function() {
             return matchesCategory && matchesSearch;
         });
 
-        // --- LÓGICA DE REORDENAÇÃO PARA RENDERIZAÇÃO ---
-        let categoriesForRendering = [...allCategories];
-        const happyHourCategory = categoriesForRendering.find(c => c.name.toLowerCase() === 'happy hour');
-        
-        if (happyHourCategory) {
-            categoriesForRendering = categoriesForRendering.filter(c => c.id !== happyHourCategory.id);
-            categoriesForRendering.push(happyHourCategory);
-        }
-        // -------------------------------------------------
+        let categoriesToRender;
 
-        const categoriesToRender = categoryId === 'all' 
-            ? categoriesForRendering.filter(c => c.parent_id === null)
-            : categoriesForRendering.filter(c => c.id === categoryId);
+        if (categoryId === 'all') {
+            // Pega todas as categorias pai para renderizar
+            let parentCategories = allCategories.filter(c => c.parent_id === null);
+            
+            // Lógica de reordenação: Só roda quando "Todos" está selecionado
+            const happyHourCategory = parentCategories.find(c => c.name.toLowerCase() === 'happy hour');
+            if (happyHourCategory) {
+                parentCategories = parentCategories.filter(c => c.id !== happyHourCategory.id);
+                parentCategories.push(happyHourCategory);
+            }
+            categoriesToRender = parentCategories;
+
+        } else {
+            // Se um filtro específico for clicado, renderiza apenas essa categoria
+            categoriesToRender = allCategories.filter(c => c.id == categoryId);
+        }
 
         categoriesToRender.forEach(category => {
             const subCategories = allCategories.filter(sc => sc.parent_id === category.id);
-
+            
             const productsInCategory = filteredProducts.filter(p => {
                 const pCat = allCategories.find(c => c.id === p.category_id);
                 return p.category_id === category.id || (pCat && pCat.parent_id === category.id);
             });
-            
+
             if (productsInCategory.length > 0) {
-                let section = document.createElement('div');
+                const section = document.createElement('div');
                 section.className = 'menu-section';
 
                 if (category.name.toLowerCase() === 'happy hour') {
@@ -156,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
         addEventListenersToMenuItems();
     }
 
-    // Função auxiliar para gerar o HTML do produto
     function generateProductHTML(product) {
         const priceText = product.price_details || `R$ ${product.price.toFixed(2).replace('.', ',')}`;
         const descriptionHTML = product.description ? `<div class="item-description">${product.description}</div>` : '';
@@ -176,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
     
-    // Função auxiliar para adicionar os cliques nos itens
     function addEventListenersToMenuItems() {
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', () => {
@@ -187,12 +187,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 5. FUNÇÕES DE EVENTOS ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
         const desktopContainer = document.getElementById('filterContainerDesktop');
 
-        // Estado atual da categoria selecionada
         let currentCategoryId = 'all';
 
         if(searchInput) {
@@ -217,8 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 6. CÓDIGO DO MODAL DE VISUALIZAÇÃO ---
-    
     function initializeModal() {
         const modal = document.getElementById('itemModal');
         if(modal) {
@@ -268,6 +264,5 @@ document.addEventListener('DOMContentLoaded', function() {
         // Implementação do botão de voltar ao topo, se desejar
     }
 
-    // --- INICIA A APLICAÇÃO ---
     initializeApp();
 });
