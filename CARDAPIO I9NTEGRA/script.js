@@ -44,27 +44,35 @@ document.addEventListener('DOMContentLoaded', function() {
         allProducts = productsData;
     }
 
-   
+    
     function renderCategories() {
         const desktopContainer = document.getElementById('filterContainerDesktop');
-
         if (!desktopContainer) return;
 
-    desktopContainer.innerHTML = ''; 
+        desktopContainer.innerHTML = ''; 
 
-    const allButton = document.createElement('button');
-    allButton.className = 'filter-btn active';
-    allButton.textContent = 'Todos';
-    allButton.dataset.categoryId = 'all';
-    desktopContainer.appendChild(allButton);
+        const allButton = document.createElement('button');
+        allButton.className = 'filter-btn active';
+        allButton.textContent = 'Todos';
+        allButton.dataset.categoryId = 'all';
+        desktopContainer.appendChild(allButton);
 
-    allCategories.forEach(category => {
-        const button = document.createElement('button');
-        button.className = 'filter-btn';
-        button.textContent = category.name;
-        button.dataset.categoryId = category.id;
-        desktopContainer.appendChild(button);
-    });
+        allCategories.forEach(category => {
+            // Apenas botões para categorias "pai"
+            if (category.parent_id === null) {
+                const button = document.createElement('button');
+                button.className = 'filter-btn';
+                button.textContent = category.name;
+                button.dataset.categoryId = category.id;
+    
+                // Adiciona a classe especial para o botão de Happy Hour
+                if (category.name.toLowerCase() === 'happy hour') {
+                    button.classList.add('happy-hour-special');
+                }
+    
+                desktopContainer.appendChild(button);
+            }
+        });
     }
     
     function renderMenu(searchTerm = '', categoryId = 'all') {
@@ -73,42 +81,103 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = '';
 
         const filteredProducts = allProducts.filter(product => {
-            const matchesCategory = categoryId === 'all' || product.category_id == categoryId;
+            const productCategory = allCategories.find(c => c.id === product.category_id);
+            if (!productCategory) return false;
+
             const matchesSearch = !searchTerm || product.name.toLowerCase().includes(searchTerm.toLowerCase());
+            
+            if (categoryId === 'all') {
+                return matchesSearch;
+            }
+
+            const matchesCategory = product.category_id == categoryId || productCategory.parent_id == categoryId;
             return matchesCategory && matchesSearch;
         });
 
-        allCategories.forEach(category => {
-            const productsInCategory = filteredProducts.filter(p => p.category_id === category.id);
+        // --- LÓGICA DE REORDENAÇÃO PARA RENDERIZAÇÃO ---
+        let categoriesForRendering = [...allCategories];
+        const happyHourCategory = categoriesForRendering.find(c => c.name.toLowerCase() === 'happy hour');
+        
+        if (happyHourCategory) {
+            categoriesForRendering = categoriesForRendering.filter(c => c.id !== happyHourCategory.id);
+            categoriesForRendering.push(happyHourCategory);
+        }
+        // -------------------------------------------------
+
+        const categoriesToRender = categoryId === 'all' 
+            ? categoriesForRendering.filter(c => c.parent_id === null)
+            : categoriesForRendering.filter(c => c.id === categoryId);
+
+        categoriesToRender.forEach(category => {
+            const subCategories = allCategories.filter(sc => sc.parent_id === category.id);
+
+            const productsInCategory = filteredProducts.filter(p => {
+                const pCat = allCategories.find(c => c.id === p.category_id);
+                return p.category_id === category.id || (pCat && pCat.parent_id === category.id);
+            });
+            
             if (productsInCategory.length > 0) {
-                const section = document.createElement('div');
+                let section = document.createElement('div');
                 section.className = 'menu-section';
 
-                let productsHTML = '';
-                productsInCategory.forEach(product => {
-                    const priceText = product.price_details || `R$ ${product.price.toFixed(2).replace('.', ',')}`;
-                    const descriptionHTML = product.description ? `<div class="item-description">${product.description}</div>` : '';
-                    productsHTML += `
-                        <div class="menu-item" data-product-id="${product.id}">
-                            <div class="item-details">
-                                <span class="item-name">${product.name}</span>
-                                ${descriptionHTML}
-                            </div>
-                            <div class="price-and-action">
-                            <span class="price">${priceText}</span>
-                            <span class="action-indicator">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            </span>
+                if (category.name.toLowerCase() === 'happy hour') {
+                    section.classList.add('happy-hour-section-special');
+                    section.innerHTML = `
+                        <div class="happy-hour-info">
+                            <h3>Horários do Happy Hour</h3>
+                            <p><strong>Quartas e Quintas:</strong> 17h às 21h</p>
+                            <p><strong>Sextas:</strong> 17h às 19h | <strong>Sábados:</strong> 15h às 19h</p>
+                            <p class="disclaimer">*Exceto vésperas de feriados e feriados. Não aceitamos vale alimentação no Happy Hour.</p>
                         </div>
-                    </div>
-                `;
-                });
+                    `;
+                }
+                
+                section.innerHTML += `<h2>${category.name}</h2>`;
 
-                section.innerHTML = `<h2>${category.name}</h2>${productsHTML}`;
+                if (subCategories.length > 0) {
+                    subCategories.forEach(sc => {
+                        const productsInSubCategory = filteredProducts.filter(p => p.category_id === sc.id);
+                        if (productsInSubCategory.length > 0) {
+                            section.innerHTML += `<h3 class="submenu-section-title">${sc.name}</h3>`;
+                            productsInSubCategory.forEach(product => {
+                                section.innerHTML += generateProductHTML(product);
+                            });
+                        }
+                    });
+                } else {
+                    productsInCategory.forEach(product => {
+                        section.innerHTML += generateProductHTML(product);
+                    });
+                }
                 container.appendChild(section);
             }
         });
         
+        addEventListenersToMenuItems();
+    }
+
+    // Função auxiliar para gerar o HTML do produto
+    function generateProductHTML(product) {
+        const priceText = product.price_details || `R$ ${product.price.toFixed(2).replace('.', ',')}`;
+        const descriptionHTML = product.description ? `<div class="item-description">${product.description}</div>` : '';
+        return `
+            <div class="menu-item" data-product-id="${product.id}">
+                <div class="item-details">
+                    <span class="item-name">${product.name}</span>
+                    ${descriptionHTML}
+                </div>
+                <div class="price-and-action">
+                    <span class="price">${priceText}</span>
+                    <span class="action-indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </span>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Função auxiliar para adicionar os cliques nos itens
+    function addEventListenersToMenuItems() {
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', () => {
                 const productId = item.dataset.productId;
@@ -123,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
         const desktopContainer = document.getElementById('filterContainerDesktop');
 
-    // Estado atual da categoria selecionada
+        // Estado atual da categoria selecionada
         let currentCategoryId = 'all';
 
         if(searchInput) {
@@ -136,15 +205,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if(desktopContainer) {
             desktopContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
-                    // Atualiza o estado da categoria
                     currentCategoryId = e.target.dataset.categoryId; 
-
-                    // Remove a classe 'active' do botão antigo e adiciona no novo
+                    
                     const currentActive = desktopContainer.querySelector('.active');
                     if (currentActive) currentActive.classList.remove('active');
                     e.target.classList.add('active');
-
-                    // Renderiza o menu com o filtro de categoria e busca atual
+                    
                     renderMenu(searchInput.value, currentCategoryId);
                 }
             });
@@ -158,8 +224,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if(modal) {
             const closeBtn = modal.querySelector('.close');
             if(closeBtn) closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
             document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.style.display === 'block') closeModal();
+                if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
             });
         }
     }

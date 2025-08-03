@@ -358,4 +358,36 @@ body {
     transform: translateX(4px);
 }
 
-/* --- Ajustes para telas maiores (Desktop) --- */
+/* --- Estilos para Seção e Botão de Happy Hour (TEMA NOVO) --- */
+
+/* Botão do Filtro com as novas cores */
+.filter-btn.happy-hour-special,
+.filter-btn.happy-hour-special.active {
+    background-color: #07553b; /* Cor principal (verde escuro) */
+    color: #ffffff;
+    border-color: #07553b;
+    box-shadow: var(--shadow-md);
+}
+.filter-btn.happy-hour-special.active {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Seção do Cardápio com as novas cores */
+.menu-section.happy-hour-section-special h2 {
+    color: #07553b; /* Título com a cor principal */
+}
+
+/* Caixa de informações com as novas cores */
+.happy-hour-section-special .happy-hour-info {
+    background-color: #f7f8e8; /* Fundo derivado da cor secundária */
+    border-left: 4px solid #ced46a; /* Borda com a cor secundária */
+}
+
+.happy-hour-section-special .happy-hour-info h3 {
+    color: #07553b; /* Título com a cor principal */
+}
+
+.happy-hour-section-special .happy-hour-info p {
+    color: #4a5c4f; /* Tom de verde escuro para leitura */
+}
