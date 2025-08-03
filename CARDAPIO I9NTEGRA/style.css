@@ -358,12 +358,12 @@ body {
     transform: translateX(4px);
 }
 
-/* --- Estilos para Seção e Botão de Happy Hour (TEMA NOVO) --- */
+/* --- Estilos para Seção e Botão de Happy Hour (TEMA NOVO E MELHORADO) --- */
 
 /* Botão do Filtro com as novas cores */
 .filter-btn.happy-hour-special,
 .filter-btn.happy-hour-special.active {
-    background-color: #07553b; /* Cor principal (verde escuro) */
+    background-color: #07553b;
     color: #ffffff;
     border-color: #07553b;
     box-shadow: var(--shadow-md);
@@ -375,19 +375,68 @@ body {
 
 /* Seção do Cardápio com as novas cores */
 .menu-section.happy-hour-section-special h2 {
-    color: #07553b; /* Título com a cor principal */
+    color: #07553b;
 }
 
-/* Caixa de informações com as novas cores */
+/* Caixa de informações com design aprimorado */
 .happy-hour-section-special .happy-hour-info {
-    background-color: #f7f8e8; /* Fundo derivado da cor secundária */
-    border-left: 4px solid #ced46a; /* Borda com a cor secundária */
+    background-color: #f7f8e8;
+    border: 1px solid #e0e6b6;
+    border-left: 5px solid #ced46a;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    border-radius: var(--radius);
 }
 
-.happy-hour-section-special .happy-hour-info h3 {
-    color: #07553b; /* Título com a cor principal */
+.happy-hour-info .happy-hour-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
 }
 
-.happy-hour-section-special .happy-hour-info p {
-    color: #4a5c4f; /* Tom de verde escuro para leitura */
+.happy-hour-header svg {
+    width: 28px;
+    height: 28px;
+    color: #07553b;
+}
+
+.happy-hour-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #07553b;
+    margin-bottom: 0; /* Reset de margem */
+}
+
+.happy-hour-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.schedule-item {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.schedule-item .day {
+    font-weight: 700;
+    color: #4a5c4f;
+}
+
+.schedule-item .time {
+    color: var(--foreground);
+}
+
+.happy-hour-info .disclaimer {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--muted-foreground);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e6b6;
 }

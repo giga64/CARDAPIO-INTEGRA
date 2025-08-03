@@ -130,9 +130,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     section.classList.add('happy-hour-section-special');
                     section.innerHTML = `
                         <div class="happy-hour-info">
-                            <h3>Horários do Happy Hour</h3>
-                            <p><strong>Quartas e Quintas:</strong> 17h às 21h</p>
-                            <p><strong>Sextas:</strong> 17h às 19h | <strong>Sábados:</strong> 15h às 19h</p>
+                            <div class="happy-hour-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <h3>Horários do Happy Hour</h3>
+                            </div>
+                            <div class="happy-hour-schedule">
+                                <div class="schedule-item">
+                                    <span class="day">Quartas e Quintas:</span>
+                                    <span class="time">17h às 21h</span>
+                                </div>
+                                <div class="schedule-item">
+                                    <span class="day">Sextas:</span>
+                                    <span class="time">17h às 19h</span>
+                                </div>
+                                 <div class="schedule-item">
+                                    <span class="day">Sábados:</span>
+                                    <span class="time">15h às 19h</span>
+                                </div>
+                            </div>
                             <p class="disclaimer">*Exceto vésperas de feriados e feriados. Não aceitamos vale alimentação no Happy Hour.</p>
                         </div>
                     `;
