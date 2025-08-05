@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCategories();
         renderMenu(); // Renderiza o menu inicial com "Todos"
         setupEventListeners();
-        initializeModal();
-        setupBackToTopButton();
     }
 
     // --- 4. FUNÇÕES DE BUSCA E RENDERIZAÇÃO ---
@@ -50,24 +48,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         desktopContainer.innerHTML = ''; 
 
-        // 1. Encontra e cria o botão Happy Hour primeiro
         const happyHourCategory = allCategories.find(c => c.name.toLowerCase() === 'happy hour' && c.parent_id === null);
         if (happyHourCategory) {
             const button = document.createElement('button');
-            button.className = 'filter-btn happy-hour-special'; // Já inicia com a classe especial
+            button.className = 'filter-btn happy-hour-special';
             button.textContent = happyHourCategory.name;
             button.dataset.categoryId = happyHourCategory.id;
             desktopContainer.appendChild(button);
         }
 
-        // 2. Cria o botão "Todos" e o define como ativo
         const allButton = document.createElement('button');
-        allButton.className = 'filter-btn active'; // "Todos" começa como ativo
+        allButton.className = 'filter-btn active';
         allButton.textContent = 'Todos';
         allButton.dataset.categoryId = 'all';
         desktopContainer.appendChild(allButton);
 
-        // 3. Cria os botões restantes, ignorando o Happy Hour que já foi adicionado
         allCategories.forEach(category => {
             if (category.parent_id === null && category.name.toLowerCase() !== 'happy hour') {
                 const button = document.createElement('button');
@@ -87,36 +82,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const filteredProducts = allProducts.filter(product => {
             const productCategory = allCategories.find(c => c.id === product.category_id);
             if (!productCategory) return false;
-
             const matchesSearch = !searchTerm || product.name.toLowerCase().includes(searchTerm.toLowerCase());
-            
-            if (categoryId === 'all') {
-                return matchesSearch;
-            }
-
+            if (categoryId === 'all') return matchesSearch;
             const matchesCategory = product.category_id == categoryId || productCategory.parent_id == categoryId;
             return matchesCategory && matchesSearch;
         });
 
         let categoriesToRender;
-
         if (categoryId === 'all') {
             let parentCategories = allCategories.filter(c => c.parent_id === null);
-            
             const happyHourCat = parentCategories.find(c => c.name.toLowerCase() === 'happy hour');
             if (happyHourCat) {
                 parentCategories = parentCategories.filter(c => c.id !== happyHourCat.id);
                 parentCategories.push(happyHourCat);
             }
             categoriesToRender = parentCategories;
-
         } else {
             categoriesToRender = allCategories.filter(c => c.id == categoryId);
         }
 
         categoriesToRender.forEach(category => {
             const subCategories = allCategories.filter(sc => sc.parent_id === category.id);
-            
             const productsInCategory = filteredProducts.filter(p => {
                 const pCat = allCategories.find(c => c.id === p.category_id);
                 return p.category_id === category.id || (pCat && pCat.parent_id === category.id);
@@ -125,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (productsInCategory.length > 0) {
                 const section = document.createElement('div');
                 section.className = 'menu-section';
+                let itemsHTML = '';
 
                 if (category.name.toLowerCase() === 'happy hour') {
                     section.classList.add('happy-hour-section-special');
@@ -135,18 +122,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <h3>Horários do Happy Hour</h3>
                             </div>
                             <div class="happy-hour-schedule">
-                                <div class="schedule-item">
-                                    <span class="day">Quartas e Quintas:</span>
-                                    <span class="time">17h às 21h</span>
-                                </div>
-                                <div class="schedule-item">
-                                    <span class="day">Sextas:</span>
-                                    <span class="time">17h às 19h</span>
-                                </div>
-                                 <div class="schedule-item">
-                                    <span class="day">Sábados:</span>
-                                    <span class="time">15h às 19h</span>
-                                </div>
+                                <div class="schedule-item"><span class="day">Quartas e Quintas:</span><span class="time">17h às 21h</span></div>
+                                <div class="schedule-item"><span class="day">Sextas:</span><span class="time">17h às 19h</span></div>
+                                <div class="schedule-item"><span class="day">Sábados:</span><span class="time">15h às 19h</span></div>
                             </div>
                             <p class="disclaimer">*Exceto vésperas de feriados e feriados. Não aceitamos vale alimentação no Happy Hour.</p>
                         </div>
@@ -159,63 +137,57 @@ document.addEventListener('DOMContentLoaded', function() {
                     subCategories.forEach(sc => {
                         const productsInSubCategory = filteredProducts.filter(p => p.category_id === sc.id);
                         if (productsInSubCategory.length > 0) {
-                            section.innerHTML += `<h3 class="submenu-section-title">${sc.name}</h3>`;
+                            itemsHTML += `<h3 class="submenu-section-title">${sc.name}</h3>`;
                             productsInSubCategory.forEach(product => {
-                                section.innerHTML += generateProductHTML(product);
+                                itemsHTML += generateProductHTML(product);
                             });
                         }
                     });
                 } else {
                     productsInCategory.forEach(product => {
-                        section.innerHTML += generateProductHTML(product);
+                        itemsHTML += generateProductHTML(product);
                     });
                 }
+
+                const itemsGrid = document.createElement('div');
+                itemsGrid.className = 'items-grid';
+                itemsGrid.innerHTML = itemsHTML;
+                section.appendChild(itemsGrid);
+
                 container.appendChild(section);
             }
         });
-        
-        addEventListenersToMenuItems();
     }
 
+    // NOVA FUNÇÃO PARA GERAR O HTML DO ITEM
     function generateProductHTML(product) {
         const priceText = product.price_details || `R$ ${product.price.toFixed(2).replace('.', ',')}`;
-        const descriptionHTML = product.description ? `<div class="item-description">${product.description}</div>` : '';
+        const descriptionHTML = product.description ? `<p class="item-description">${product.description}</p>` : '';
+        const imageHTML = product.image_url 
+            ? `<img src="${product.image_url}" alt="${product.name}" class="item-image-list">` 
+            : `<div class="image-placeholder-list"><span>📸</span></div>`;
+
         return `
-            <div class="menu-item" data-product-id="${product.id}">
+            <div class="menu-item">
+                <div class="item-image-wrapper">${imageHTML}</div>
                 <div class="item-details">
-                    <span class="item-name">${product.name}</span>
+                    <h4 class="item-name">${product.name}</h4>
                     ${descriptionHTML}
-                </div>
-                <div class="price-and-action">
-                    <span class="price">${priceText}</span>
-                    <span class="action-indicator">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                    </span>
+                    <div class="price">${priceText}</div>
                 </div>
             </div>
         `;
     }
     
-    function addEventListenersToMenuItems() {
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const productId = item.dataset.productId;
-                const productData = allProducts.find(p => p.id == productId);
-                if (productData) openItemModal(productData);
-            });
-        });
-    }
-
+    // --- 5. FUNÇÕES DE EVENTOS ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
         const desktopContainer = document.getElementById('filterContainerDesktop');
-
         let currentCategoryId = 'all';
 
         if(searchInput) {
             searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value;
-                renderMenu(searchTerm, currentCategoryId);
+                renderMenu(e.target.value, currentCategoryId);
             });
         }
 
@@ -223,64 +195,13 @@ document.addEventListener('DOMContentLoaded', function() {
             desktopContainer.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
                     currentCategoryId = e.target.dataset.categoryId; 
-                    
                     const currentActive = desktopContainer.querySelector('.active');
                     if (currentActive) currentActive.classList.remove('active');
                     e.target.classList.add('active');
-                    
                     renderMenu(searchInput.value, currentCategoryId);
                 }
             });
         }
-    }
-
-    function initializeModal() {
-        const modal = document.getElementById('itemModal');
-        if(modal) {
-            const closeBtn = modal.querySelector('.close');
-            if(closeBtn) closeBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
-            });
-        }
-    }
-
-    function openItemModal(productData) {
-        const modal = document.getElementById('itemModal');
-        
-        modal.querySelector('#modalItemName').textContent = productData.name;
-        modal.querySelector('#modalItemDescription').textContent = productData.description || '';
-        modal.querySelector('#modalItemPrice').textContent = productData.price_details || `R$ ${productData.price.toFixed(2).replace('.', ',')}`;
-        
-        const modalImage = modal.querySelector('#modalItemImage');
-        const placeholder = modal.querySelector('.image-placeholder');
-        
-        if (productData.image_url) {
-            modalImage.src = productData.image_url;
-            modalImage.style.display = 'block';
-            if(placeholder) placeholder.style.display = 'none';
-        } else {
-            modalImage.style.display = 'none';
-            if(placeholder) placeholder.style.display = 'block';
-        }
-        
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-
-    window.closeModal = function() {
-        const modal = document.getElementById('itemModal');
-        modal.classList.remove('open');
-        document.body.style.overflow = 'auto';
-    }
-
-    function setupBackToTopButton() {
-        // Implementação do botão de voltar ao topo, se desejar
     }
 
     initializeApp();

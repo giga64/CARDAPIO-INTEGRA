@@ -1,4 +1,4 @@
-/* Integra Bar & Restaurante Design System - Versão Corrigida */
+/* Integra Bar & Restaurante Design System */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap');
 
 /* Reset e Variáveis Globais */
@@ -56,18 +56,18 @@ body {
 }
 
 .logo {
-  width: 160px;
+  width: 140px;
   height: auto;
   filter: brightness(0) invert(1);
 }
 
-/* --- Filtros e Busca (Otimizado para Mobile) --- */
+/* --- Filtros e Busca --- */
 .menu-controls {
-    background-color: var(--card); /* Fundo branco sólido */
+    background-color: var(--card);
     padding: 1rem;
-    margin: 0 -1rem; /* Ocupa a largura toda do container no mobile */
+    margin: 0 -1rem;
     position: sticky;
-    top: 40px; /* Altura do header mobile */
+    top: 60px; 
     z-index: 990;
     border-bottom: 1px solid var(--border);
 }
@@ -84,8 +84,8 @@ body {
 
 .filter-container {
     display: flex;
-    gap: 1.0rem;
-    overflow-x: auto; /* Permite rolar os botões */
+    gap: 0.5rem;
+    overflow-x: auto;
     padding-bottom: 0.5rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -99,7 +99,7 @@ body {
     border: 1px solid var(--border);
     background-color: var(--card);
     color: var(--foreground);
-    border-radius: 999px; /* Formato de pílula */
+    border-radius: 999px;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
@@ -119,11 +119,13 @@ body {
 /* --- Cardápio --- */
 #menuContent {
     padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
 }
 
 .menu-section {
   background: var(--card);
-  margin-bottom: 1.5rem;
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
@@ -135,67 +137,95 @@ body {
   color: var(--primary);
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
 
+.menu-section .items-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* NOVO LAYOUT DO ITEM DO CARDÁPIO */
 .menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* MODIFICADO: Centraliza verticalmente */
-  gap: 1rem;
-  padding: 1rem 0.5rem;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  transition: var(--transition);
+    display: flex;
+    flex-direction: column; /* Layout mobile-first */
+    background-color: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
 }
 .menu-item:hover {
-    background-color: #fafafa;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
-/* Efeito de toque para dispositivos móveis e clique */
-.menu-item:active {
-    background-color: var(--secondary); /* Um cinza um pouco mais escuro que o hover */
-    transform: scale(0.99); /* Efeito sutil de "pressionado" */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06); /* Sombra interna sutil */
+.item-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10; /* Proporção da imagem */
+    background-color: var(--secondary);
 }
-.menu-item img {
-    width: 80px;
-    height: 80px;
+
+.item-image-wrapper img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: var(--radius);
 }
 
-.menu-section .menu-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.image-placeholder-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted-foreground);
+    font-size: 2.5rem;
 }
 
-/* CORREÇÃO PARA ITENS GRANDES */
 .item-details {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    min-width: 0; /* Impede que o flex item cresça infinitamente */
 }
 
 .item-name {
-  font-weight: 500;
-  font-size: 1rem;
-  word-break: break-word; /* Quebra palavras longas */
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
 }
 
 .item-description {
   color: var(--muted-foreground);
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-  word-break: break-word; /* Quebra palavras longas */
+  font-size: 0.9rem;
+  flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
+  margin-bottom: 0.75rem;
 }
 
 .price {
   font-weight: 700;
-  font-size: 1rem;
-  color: var(--foreground);
-  white-space: nowrap;
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-top: auto; /* Empurra o preço para baixo */
+}
+
+/* --- Títulos de Subcategoria --- */
+.submenu-section-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--border);
+}
+.menu-section .submenu-section-title:first-of-type {
+    margin-top: 1rem;
 }
 
 /* --- Rodapé --- */
@@ -235,102 +265,6 @@ body {
   font-size: 0.85rem;
 }
 
-/* --- Modal (VISUAL SÓLIDO E CENTRALIZADO) --- */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9998;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(26, 26, 26, 0.8); /* Fundo sólido escuro */
-}
-
-.modal.open {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-}
-
-.modal-content {
-    background-color: var(--card); /* Fundo branco sólido */
-    border-radius: var(--radius);
-    width: 100%;
-    max-width: 400px;
-    max-height: 90vh;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    animation: modalSlideIn 0.3s ease-out;
-    display: flex;
-    flex-direction: column;
-}
-
-@keyframes modalSlideIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-body {
-    padding: 0;
-    text-align: center;
-    overflow-y: auto;
-}
-
-.item-image-container {
-    width: 100%;
-    height: 220px;
-    background-color: var(--secondary);
-}
-
-.item-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.item-info {
-    padding: 1.5rem;
-}
-
-.item-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-}
-
-.item-info .item-description {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    color: var(--muted-foreground);
-}
-
-.item-info .price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
 .loading-placeholder {
     text-align: center;
     padding: 4rem 1rem;
@@ -338,29 +272,7 @@ body {
     color: var(--muted-foreground);
 }
 
-/* --- Estilos para o indicador de ação do item --- */
-.price-and-action {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem; /* Espaço entre o preço e o ícone */
-    color: var(--primary); /* Cor do ícone será a cor primária */
-}
-
-.action-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease-in-out;
-}
-
-/* Animação sutil no hover/tap para mover o ícone */
-.menu-item:hover .action-indicator {
-    transform: translateX(4px);
-}
-
-/* --- Estilos para Seção e Botão de Happy Hour (TEMA NOVO E MELHORADO) --- */
-
-/* Botão do Filtro com as novas cores */
+/* --- Estilos Happy Hour --- */
 .filter-btn.happy-hour-special,
 .filter-btn.happy-hour-special.active {
     background-color: #07553b;
@@ -372,13 +284,9 @@ body {
     transform: translateY(-2px) scale(1.05);
     box-shadow: var(--shadow-lg);
 }
-
-/* Seção do Cardápio com as novas cores */
 .menu-section.happy-hour-section-special h2 {
     color: #07553b;
 }
-
-/* Caixa de informações com design aprimorado */
 .happy-hour-section-special .happy-hour-info {
     background-color: #f7f8e8;
     border: 1px solid #e0e6b6;
@@ -387,28 +295,24 @@ body {
     margin-bottom: 2rem;
     border-radius: var(--radius);
 }
-
 .happy-hour-info .happy-hour-header {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
 }
-
 .happy-hour-header svg {
     width: 28px;
     height: 28px;
     color: #07553b;
 }
-
 .happy-hour-header h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: #07553b;
-    margin-bottom: 0; /* Reset de margem */
+    margin-bottom: 0;
 }
-
 .happy-hour-schedule {
     display: flex;
     flex-direction: column;
@@ -416,22 +320,18 @@ body {
     padding-left: 0.5rem;
     margin-bottom: 1rem;
 }
-
 .schedule-item {
     display: flex;
     gap: 0.5rem;
     font-size: 0.95rem;
 }
-
 .schedule-item .day {
     font-weight: 700;
     color: #4a5c4f;
 }
-
 .schedule-item .time {
     color: var(--foreground);
 }
-
 .happy-hour-info .disclaimer {
     font-size: 0.85rem;
     font-style: italic;
@@ -439,4 +339,25 @@ body {
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid #e0e6b6;
+}
+
+/* --- Ajustes para telas maiores (Tablet/Desktop) --- */
+@media (min-width: 768px) {
+    .menu-controls {
+        margin: 0;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        margin-bottom: 1.5rem;
+    }
+    .menu-section .items-grid {
+        /* Exibe 2 colunas em telas maiores */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .menu-section .items-grid {
+        /* Exibe 3 colunas em telas bem grandes */
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
