@@ -165,8 +165,8 @@ body {
 }
 
 .item-image-wrapper {
-    width: 80px;  /* Largura fixa e menor */
-    height: 80px; /* Altura fixa e menor */
+    width: 100px;  /* Largura fixa e menor */
+    height: 100px; /* Altura fixa e menor */
     flex-shrink: 0; /* Impede que a imagem encolha */
     border-radius: calc(var(--radius) - 4px);
     overflow: hidden;
