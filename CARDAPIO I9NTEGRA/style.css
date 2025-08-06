@@ -145,28 +145,31 @@ body {
 .menu-section .items-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem; /* Espaçamento menor entre os itens */
 }
 
-/* NOVO LAYOUT DO ITEM DO CARDÁPIO */
+/* NOVO LAYOUT COMPACTO DO ITEM DO CARDÁPIO */
 .menu-item {
     display: flex;
-    flex-direction: column; /* Layout mobile-first */
-    background-color: var(--card);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    flex-direction: row; /* Imagem sempre ao lado */
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
     border: 1px solid var(--border);
+    border-radius: var(--radius);
     transition: var(--transition);
 }
 .menu-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    border-color: #ddd;
+    box-shadow: var(--shadow-sm);
 }
 
 .item-image-wrapper {
-    width: 100%;
-    aspect-ratio: 16 / 10; /* Proporção da imagem */
+    width: 80px;  /* Largura fixa e menor */
+    height: 80px; /* Altura fixa e menor */
+    flex-shrink: 0; /* Impede que a imagem encolha */
+    border-radius: calc(var(--radius) - 4px);
+    overflow: hidden;
     background-color: var(--secondary);
 }
 
@@ -183,34 +186,36 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--muted-foreground);
-    font-size: 2.5rem;
+    font-size: 1.5rem;
 }
 
 .item-details {
-    padding: 1rem;
+    padding: 0; /* Padding removido, controlado pelo gap */
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-width: 0; /* Previne que o texto empurre o layout */
 }
 
 .item-name {
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-weight: 500; /* Peso da fonte ajustado */
+  font-size: 1rem;
   margin-bottom: 0.25rem;
+  line-height: 1.2;
 }
 
 .item-description {
   color: var(--muted-foreground);
-  font-size: 0.9rem;
-  flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
-  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
 }
 
 .price {
   font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--primary);
-  margin-top: auto; /* Empurra o preço para baixo */
+  font-size: 1rem;
+  color: var(--foreground); /* Cor do preço ajustada */
+  margin-top: 0;
 }
 
 /* --- Títulos de Subcategoria --- */
@@ -360,4 +365,25 @@ body {
         /* Exibe 3 colunas em telas bem grandes */
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+/* --- Estilos para Assinatura no Rodapé --- */
+.footer-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dev-signature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--muted-foreground);
+}
+
+.footer-logo {
+    height: 24px; /* Ajuste a altura do seu logo conforme necessário */
+    width: auto;
 }
