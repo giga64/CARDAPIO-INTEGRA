@@ -90,6 +90,7 @@ body {
     border-bottom: 1px solid var(--border); /* Linha cinza de fundo */
     -ms-overflow-style: none;
     scrollbar-width: none;
+    overscroll-behavior-y: contain; /* Adicione esta linha */
 }
 .filter-container::-webkit-scrollbar {
     display: none;
