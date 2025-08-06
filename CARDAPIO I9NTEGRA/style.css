@@ -61,7 +61,7 @@ body {
   filter: brightness(0) invert(1);
 }
 
-/* --- Filtros e Busca --- */
+/* --- Filtros e Busca (COM NOVO ESTILO) --- */
 .menu-controls {
     background-color: var(--card);
     padding: 1rem;
@@ -84,9 +84,10 @@ body {
 
 .filter-container {
     display: flex;
-    gap: 0.5rem;
+    gap: 1.5rem; /* Aumentamos o espaço entre os botões */
     overflow-x: auto;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0; /* Removemos o padding de baixo */
+    border-bottom: 1px solid var(--border); /* Linha cinza de fundo */
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -94,29 +95,49 @@ body {
     display: none;
 }
 
+/* NOVO ESTILO DOS BOTÕES DE FILTRO */
 .filter-btn {
-    padding: 0.6rem 1.25rem;
-    border: 1px solid var(--border);
-    background-color: var(--card);
-    color: var(--foreground);
-    border-radius: 999px;
+    /* Reset dos estilos antigos */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    /* Novos estilos */
+    padding: 0.75rem 0.25rem;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
-    transition: var(--transition);
-    box-shadow: var(--shadow-sm);
-    display: inline-flex; /* Melhora o alinhamento */
-    align-items: center;  /* Centraliza o texto verticalmente */
-    justify-content: center;
+    transition: color 0.2s ease-in-out;
+    color: var(--muted-foreground); /* Cor padrão do texto (cinza) */
+    text-transform: uppercase;
+    position: relative; /* Necessário para a barrinha */
+}
+
+.filter-btn:hover {
+    color: var(--primary); /* Ao passar o mouse, fica vermelho */
 }
 
 .filter-btn.active {
-    background-color: var(--primary);
-    color: white;
-    border-color: var(--primary);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    /* Reset dos estilos antigos */
+    transform: none; 
+    background-color: transparent;
+    box-shadow: none;
+    
+    /* Novo estilo do botão ativo */
+    color: var(--foreground); /* Texto fica mais escuro */
+}
+
+/* A BARRINHA INDICADORA */
+.filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Posiciona sobre a borda cinza */
+    left: 0;
+    width: 100%;
+    height: 3px; /* Espessura da barra */
+    background-color: var(--primary); /* Cor da barra (vermelho) */
 }
 
 /* --- Cardápio --- */
@@ -151,7 +172,7 @@ body {
     gap: 1rem; /* Espaçamento menor entre os itens */
 }
 
-/* NOVO LAYOUT COMPACTO DO ITEM DO CARDÁPIO */
+/* LAYOUT COMPACTO DO ITEM DO CARDÁPIO */
 .menu-item {
     display: flex;
     flex-direction: row; /* Imagem sempre ao lado */
@@ -281,17 +302,17 @@ body {
 }
 
 /* --- Estilos Happy Hour --- */
-.filter-btn.happy-hour-special,
+.filter-btn.happy-hour-special:hover {
+    color: #07553b;
+}
 .filter-btn.happy-hour-special.active {
+    color: #07553b;
+    font-weight: 700;
+}
+.filter-btn.happy-hour-special.active::after {
     background-color: #07553b;
-    color: #ffffff;
-    border-color: #07553b;
-    box-shadow: var(--shadow-md);
 }
-.filter-btn.happy-hour-special.active {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: var(--shadow-lg);
-}
+
 .menu-section.happy-hour-section-special h2 {
     color: #07553b;
 }
