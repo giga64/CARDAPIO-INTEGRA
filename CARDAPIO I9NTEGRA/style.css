@@ -91,6 +91,7 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
     overscroll-behavior-y: contain; /* Adicione esta linha */
+    touch-action: pan-x; /* Adicione esta nova linha */
 }
 .filter-container::-webkit-scrollbar {
     display: none;
