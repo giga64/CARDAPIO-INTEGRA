@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- 1. CONFIGURAÇÃO DO SUPABASE ---
     const SUPABASE_URL = 'https://llpyzevrzgfqwxvbguli.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxscHl6ZXZyemdmcXd4dmJndWxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MDk5MTIsImV4cCI6MjA2OTQ4NTkxMn0.RYHbYNr-7Ksb-WmuOTOrQETB1tx_IUP1FC_JBuzdn60';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzINiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxscHl6ZXZyemdmcXd4dmJndWxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5MDk5MTIsImV4cCI6MjA2OTQ4NTkxMn0.RYHbYNr-7Ksb-WmuOTOrQETB1tx_IUP1FC_JBuzdn60';
 
     const { createClient } = supabase;
     const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCategories();
         renderMenu(); // Renderiza o menu inicial com "Todos"
         setupEventListeners();
+        setupFilterScrollLock(); // Trava a rolagem vertical do filtro
     }
 
     // --- 4. FUNÇÕES DE BUSCA E RENDERIZAÇÃO ---
@@ -159,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // NOVA FUNÇÃO PARA GERAR O HTML DO ITEM
     function generateProductHTML(product) {
         const priceText = product.price_details || `R$ ${product.price.toFixed(2).replace('.', ',')}`;
         const descriptionHTML = product.description ? `<p class="item-description">${product.description}</p>` : '';
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
     
-    // --- 5. FUNÇÕES DE EVENTOS ---
+    // --- 5. FUNÇÕES DE EVENTOS E TRAVAS ---
     function setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
         const desktopContainer = document.getElementById('filterContainerDesktop');
@@ -202,6 +202,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+    }
+
+    function setupFilterScrollLock() {
+        const filterContainer = document.getElementById('filterContainerDesktop');
+        if (!filterContainer) return;
+
+        let startY;
+        let startX;
+
+        filterContainer.addEventListener('touchstart', function(e) {
+            startY = e.touches[0].pageY;
+            startX = e.touches[0].pageX;
+        }, { passive: true });
+
+        filterContainer.addEventListener('touchmove', function(e) {
+            const deltaY = Math.abs(e.touches[0].pageY - startY);
+            const deltaX = Math.abs(e.touches[0].pageX - startX);
+
+            // Apenas previne o comportamento padrão se o movimento vertical for
+            // significativamente maior que o horizontal. Isso permite a rolagem horizontal.
+            if (deltaY > deltaX) {
+                 e.preventDefault();
+            }
+        }, { passive: false });
     }
 
     initializeApp();
