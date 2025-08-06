@@ -95,7 +95,7 @@ body {
 }
 
 .filter-btn {
-    padding: 0.5rem 1.25rem;
+    padding: 0.6rem 1.25rem;
     border: 1px solid var(--border);
     background-color: var(--card);
     color: var(--foreground);
@@ -106,6 +106,9 @@ body {
     white-space: nowrap;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
+    display: inline-flex; /* Melhora o alinhamento */
+    align-items: center;  /* Centraliza o texto verticalmente */
+    justify-content: center;
 }
 
 .filter-btn.active {
