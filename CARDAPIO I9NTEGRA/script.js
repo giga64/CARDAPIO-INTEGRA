@@ -159,12 +159,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // NOVA FUNÇÃO PARA GERAR O HTML DO ITEM
+    // --- PONTO DA OTIMIZAÇÃO ---
+    // Esta é a função que alteramos para deixar tudo mais rápido.
     function generateProductHTML(product) {
         const priceText = product.price_details || `R$ ${product.price.toFixed(2).replace('.', ',')}`;
         const descriptionHTML = product.description ? `<p class="item-description">${product.description}</p>` : '';
+
+        // DICA DE SENIOR: Verificamos se a 'image_url' existe. Se não, mostramos o placeholder.
+        // Se existe, construímos a URL otimizada do Supabase.
         const imageHTML = product.image_url 
-            ? `<img src="${product.image_url}" alt="${product.name}" class="item-image-list">` 
+            ? `<img 
+                 src="${_supabase.storage.from('products').getPublicUrl(product.image_url).data.publicUrl}?width=200&height=200&quality=75" 
+                 alt="${product.name}" 
+                 class="item-image-list"
+                 loading="lazy">` // O 'loading="lazy"' é crucial para a performance inicial!
             : `<div class="image-placeholder-list"><span>📸</span></div>`;
 
         return `
